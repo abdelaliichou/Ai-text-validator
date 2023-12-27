@@ -100,3 +100,93 @@
 .test {
   background-color: #b6b6b6;
 }
+
+@media (max-width: 500px) {
+  .page-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #1a1a1a;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .response-text {
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-align: center;
+    color: #353535;
+  }
+
+  .text-input {
+    padding: 10px;
+    width: 350px;
+    height: 80px;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #363636;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #007bff;
+  }
+
+  .analyze-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 380px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 400px) {
+  .page-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #1a1a1a;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .response-text {
+    font-size: 1.1rem;
+    font-weight: normal;
+    text-align: center;
+    color: #353535;
+  }
+
+  .text-input {
+    padding: 10px;
+    width: 300px;
+    height: 60px;
+    border-radius: 12px;
+    font-weight: 500;
+    color: #363636;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #007bff;
+  }
+
+  .analyze-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 330px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
