@@ -1,27 +1,30 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
+
 
 function App() {
   const [inputText, setInputText] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState("");  
 
-  // this function is the one who's responsible for getting the response from the API
-  const handleSubmit = async () => {
-    const response = await fetch("API_MODULE", {
-      
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: inputText }),
-    });
+  // get from my local server 
 
-    const data = await response.json();
-    setResult(data);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/');
+      setResult(response.message);
+      console.log(result)
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  const handleBardSubmit = async () => {
+    await fetchData();
+  }
+
   // this is just a static function to test the different stats of our responses after clicking the button
-  const handleSubmitTest = async () => {
+  const handleTestSubmit = async () => {
     switch (result) {
       case "":
         setResult("trust_worthy");
@@ -58,9 +61,18 @@ function App() {
           onChange={handleTextChange}
         />
 
-        {/*  this is the button to click to check the infomation worth  */}
+        <select className="drop" id="options" >
+           <option value="">Select an AI-Model</option>
+           <option value="option2">BARD ( PALM )</option>
+           <option value="option1">GEMINI</option>
+           <option value="option3">GPT4</option>
+           <option value="option3">GPT3.5</option>
+           <option value="option3">MISTRAL</option>
+           
+        </select>
 
-        <button className="analyze-button" onClick={handleSubmitTest}>
+        {/*  this is the button to click to check the infomation worth  */}
+        <button className="analyze-button" onClick={handleBardSubmit}>
           Analyze
         </button>
       </div>
@@ -127,13 +139,14 @@ function App() {
 
           <div className="response-section">
             <p className="response-text">
-              The opinion of the LARGE LANGUAGE MODEL
+              {/* The opinion of the LARGE LANGUAGE MODEL */}
             </p>
             <p className="response-text">
-              Text response from the LARGE LANGUAGE MODEL
+              {/* Text response from the LARGE LANGUAGE MODEL */}
+              {result}
             </p>
             <p className="response-text">
-              Link to the reference from the LARGE LANGUAGE MODEL
+              {/* Link to the reference from the LARGE LANGUAGE MODEL */}
             </p>
           </div>
 
