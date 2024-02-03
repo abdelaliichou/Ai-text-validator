@@ -72,7 +72,7 @@ function App() {
         </select>
 
         {/*  this is the button to click to check the infomation worth  */}
-        <button className="analyze-button" onClick={handleBardSubmit}>
+        <button className="analyze-button" onClick={handleTestSubmit}>
           Analyze
         </button>
       </div>
