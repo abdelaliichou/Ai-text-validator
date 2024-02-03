@@ -8,6 +8,7 @@ function App() {
   // this function is the one who's responsible for getting the response from the API
   const handleSubmit = async () => {
     const response = await fetch("API_MODULE", {
+      
       method: "POST",
       headers: {
         "Content-Type": "application/json",
