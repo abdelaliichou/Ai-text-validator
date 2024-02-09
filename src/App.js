@@ -11,15 +11,15 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/');
-      setResult(response.message);
-      console.log(result)
+      const response = await axios.post('http://localhost:3000/g', { data: inputText });
+      console.log(response.data);  
+      setResult(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleBardSubmit = async () => {
+  const handleAPI = async () => {
     await fetchData();
   }
 
@@ -72,7 +72,7 @@ function App() {
         </select>
 
         {/*  this is the button to click to check the infomation worth  */}
-        <button className="analyze-button" onClick={handleTestSubmit}>
+        <button className="analyze-button" onClick={handleAPI}>
           Analyze
         </button>
       </div>
@@ -139,11 +139,10 @@ function App() {
 
           <div className="response-section">
             <p className="response-text">
-              {/* The opinion of the LARGE LANGUAGE MODEL */}
+              {result}
             </p>
             <p className="response-text">
               {/* Text response from the LARGE LANGUAGE MODEL */}
-              {result}
             </p>
             <p className="response-text">
               {/* Link to the reference from the LARGE LANGUAGE MODEL */}
@@ -153,7 +152,7 @@ function App() {
           {/* thos are our buttons, they are all gray in gray color because we didn't enter any text to verify*/}
 
           <div className="result-section">
-            <div className="result-image test"></div>
+            <div className="result-image good"></div>
             <div className="result-image test"></div>
             <div className="result-image test"></div>
           </div>
