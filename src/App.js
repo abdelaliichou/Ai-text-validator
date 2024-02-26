@@ -11,7 +11,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/g', { data: inputText });
+      const response = await axios.post('http://localhost:4000/g', { data: inputText });
       console.log(response.data);  
       setResult(response.data);
     } catch (error) {
@@ -116,21 +116,41 @@ function App() {
             <div className="result-image test"></div>
           </div>
         </>
-      ) : result === "fake" ? (
+      ) : result === "Please try to ask something related to to medical field... !" ? (
         <>
           {/*  in this case, we show the red button with the fake info from the API  */}
 
           <div className="response-section">
-            <p className="response-text">Your infomration is FAKE</p>
-            <p className="response-text">Link to the text from API</p>
+            <p className="response-text">
+              {result}
+            </p>
+            <p className="response-text">
+              {/* Text response from the LARGE LANGUAGE MODEL */}
+            </p>
+            <p className="response-text">
+              {/* Link to the reference from the LARGE LANGUAGE MODEL */}
+            </p>
           </div>
-
           {/*  thos are our buttons, the red is on */}
 
           <div className="result-section">
             <div className="result-image test"></div>
             <div className="result-image test"></div>
             <div className="result-image bad"></div>
+          </div>
+        </>
+      ) : result === "" ? (
+        <>
+          {/*  in this case, we show the red button with the fake info from the API  */}
+
+          <div className="response-section">
+            <p className="response-text">How can i help you today ?</p>
+          </div>
+          
+          <div className="result-section">
+            <div className="result-image test"></div>
+            <div className="result-image test"></div>
+            <div className="result-image test"></div>
           </div>
         </>
       ) : (
