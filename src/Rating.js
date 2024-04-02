@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import imageSrc from './rating.svg';
 
 
-function App() {
+function Rating() {
 
   // declaration of all our variables
 
@@ -176,7 +176,7 @@ function App() {
 
           {/*  Rating button  */}
 
-          <Link to="/rating">
+          <Link to="/another-page">
              <button className="rating-button" onClick={handleAPI}>
                  Rate this answer trust level
                  <img src={imageSrc} alt="Image" />
@@ -197,4 +197,4 @@ function App() {
   );
 }
 
-export default App;
+export default Rating;
