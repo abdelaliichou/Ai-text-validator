@@ -1,13 +1,17 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import imageSrc from './rating.svg'; // Import your image file
 
 
 function App() {
+
+  // declaration of all our variables
+
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
 
-  // get from my local server 
+  // pass request and get response from my local backend server 
 
   const fetchData = async () => {
     try {
@@ -141,7 +145,7 @@ function App() {
         </>
       ) : result === "" ? (
         <>
-          {/*  in this case, we show the red button with the fake info from the API  */}
+          {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */}
 
           <div className="response-section">
             <p className="response-text">How can i help you today ?</p>
@@ -155,7 +159,7 @@ function App() {
         </>
       ) : (
         <>
-          {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */}
+          {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
 
           <div className="response-section">
             <p className="response-text">
@@ -168,6 +172,13 @@ function App() {
               {/* Link to the reference from the LARGE LANGUAGE MODEL */}
             </p>
           </div>
+
+          {/*  Rating button  */}
+
+          <button className="rating-button" onClick={handleAPI}>
+          Rate this answer trust level
+          <img src={imageSrc} alt="Image" />
+          </button>
 
           {/* thos are our buttons, they are all gray in gray color because we didn't enter any text to verify*/}
 
