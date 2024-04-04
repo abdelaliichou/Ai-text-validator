@@ -1,24 +1,36 @@
-import "./App.css";
+import "./Rating.css";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import imageSrc from './rating.svg';
+import { useParams, useNavigate } from 'react-router-dom';
+import imageSrc from './X.png';
 
 
-function Rating() {
+const RatingPage = () => {
 
-  // declaration of all our variables
+  const [rating, setRating] = useState("0");
+  const [hoverRating, setHoverRating] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
-  const [inputText, setInputText] = useState("");
-  const [result, setResult] = useState("");  
+  // Getting the params
+  const {ref} = useParams();  
 
-  // pass request and get response from my local backend server 
-
+  // saving the rating in the database 
   const fetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/g', { data: inputText });
-      console.log(response.data);  
-      setResult(response.data);
+      const datum = {
+        rating : rating,
+        reference : ref
+      }
+      const response = await axios.post('http://localhost:4000/save', datum
+      );
+      console.log(response.data);
+
+      // showing alert message if setting the rating was good 
+      if(response.data === "SUCCESS"){
+        setShowAlert(true);
+      }
+
     } catch (error) {
       console.error(error);
     }
@@ -28,173 +40,48 @@ function Rating() {
     await fetchData();
   }
 
-  // this is just a static function to test the different stats of our responses after clicking the button
-  const handleTestSubmit = async () => {
-    switch (result) {
-      case "":
-        setResult("trust_worthy");
-        break;
-      case "trust_worthy":
-        setResult("doutable");
-        break;
-      case "doutable":
-        setResult("fake");
-        break;
-      case "fake":
-        setResult("");
-        break;
-      default:
-        setResult("");
-    }
+  const handleRatingClick = (value) => {
+    setRating(value);
   };
 
-  // a use effect method to change the text after writing
-  const handleTextChange = (e) => {
-    setInputText(e.target.value);
+  const handleMouseEnter = (value) => {
+    setHoverRating(value);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverRating(null);
   };
 
   return (
-    <div className="page-container">
-      <h1 className="page-heading">Check your health related information...</h1>
-      {/*  this is the input section where we in write our information  */}
-      <div className="input-section">
-        <input
-          type="text"
-          className="text-input"
-          placeholder="Waiting..."
-          value={inputText}
-          onChange={handleTextChange}
-        />
-
-        <select className="drop" id="options" >
-           <option value="">Select an AI-Model</option>
-           <option value="option2">BARD ( PALM )</option>
-           <option value="option1">GEMINI</option>
-           <option value="option3">GPT4</option>
-           <option value="option3">GPT3.5</option>
-           <option value="option3">MISTRAL</option>
-           
-        </select>
-
-        {/*  this is the button to click to check the infomation worth  */}
-        <button className="analyze-button" onClick={handleAPI}>
-          Analyze
-        </button>
+    <div className="rating-page"> 
+      <img src={imageSrc} alt="Image" className="backHome" onClick={()=>{ navigate("/") }}/>
+      <h1>How much you trust our Model's generated response ?</h1>
+      <div className="rating-container">
+        {[1, 2, 3, 4, 5].map((value) => (
+          <span
+            key={value}
+            className={value <= (hoverRating || rating) ? "active" : ""}
+            onClick={() => handleRatingClick(value)}
+            onMouseEnter={() => handleMouseEnter(value)}
+            onMouseLeave={handleMouseLeave}
+          >
+            &#9733;
+          </span>
+        ))}
       </div>
-
-      {/*  here is the logic of showing different componenets based on the "result" variable
-      which is the response of our API */}
-
-      {result === "trust_worthy" ? (
-        <>
-          {/*  in this case, we show the green button with the trust worthy info from the API  */}
-
-          <div className="response-section">
-            <p className="response-text">Your infomration is TRUST WORTHY</p>
-            <p className="response-text">Text from the API</p>
-            <p className="response-text">Link to the text from API </p>
-          </div>
-
-          {/*  thos are our buttons, the green is on */}
-
-          <div className="result-section">
-            <div className="result-image good"></div>
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-          </div>
-        </>
-      ) : result === "doutable" ? (
-        <>
-          {/*  in this case, we show the yellow button with the doutable info from the API  */}
-
-          <div className="response-section">
-            <p className="response-text">Your infomration is DOUTABLE</p>
-            <p className="response-text">Text from the API</p>
-            <p className="response-text">Not supported reference </p>
-          </div>
-
-          {/*  thos are our buttons, the yellow is on */}
-
-          <div className="result-section">
-            <div className="result-image test"></div>
-            <div className="result-image normal"></div>
-            <div className="result-image test"></div>
-          </div>
-        </>
-      ) : result === "Please try to ask something related to to medical field... !" ? (
-        <>
-          {/*  in this case, we show the red button with the fake info from the API  */}
-
-          <div className="response-section">
-            <p className="response-text">
-              {result}
-            </p>
-            <p className="response-text">
-              {/* Text response from the LARGE LANGUAGE MODEL */}
-            </p>
-            <p className="response-text">
-              {/* Link to the reference from the LARGE LANGUAGE MODEL */}
-            </p>
-          </div>
-          {/*  thos are our buttons, the red is on */}
-
-          <div className="result-section">
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-            <div className="result-image bad"></div>
-          </div>
-        </>
-      ) : result === "" ? (
-        <>
-          {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */}
-
-          <div className="response-section">
-            <p className="response-text">How can i help you today ?</p>
-          </div>
-          
-          <div className="result-section">
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-          </div>
-        </>
-      ) : (
-        <>
-          {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
-
-          <div className="response-section">
-            <p className="response-text">
-              {result}
-            </p>
-            <p className="response-text">
-              {/* Text response from the LARGE LANGUAGE MODEL */}
-            </p>
-            <p className="response-text">
-              {/* Link to the reference from the LARGE LANGUAGE MODEL */}
-            </p>
-          </div>
-
-          {/*  Rating button  */}
-
-          <Link to="/another-page">
-             <button className="rating-button" onClick={handleAPI}>
-                 Rate this answer trust level
-                 <img src={imageSrc} alt="Image" />
-             </button>
-          </Link>
-
-          
-          {/* thos are our buttons, they are all gray in gray color because we didn't enter any text to verify*/}
-
-          <div className="result-section">
-            <div className="result-image good"></div>
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-          </div>
-        </>
+      <p>{rating} stars</p>
+      <button className="rating-button2" onClick={handleAPI}>
+            Save opinion
+      </button>
+      {/* Modal for displaying the alert message */}
+      {showAlert && (
+        <div className="alert">
+          <span className="closebtn" onClick={()=> {setShowAlert(false)}}>&times;</span>
+          Your rating has been saved successfully!
+        </div>
       )}
     </div>
   );
-}
+};
 
-export default Rating;
+export default RatingPage;

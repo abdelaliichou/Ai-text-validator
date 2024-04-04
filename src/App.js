@@ -1,8 +1,9 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import imageSrc from './rating.svg';
+
 
 
 function App() {
@@ -11,14 +12,18 @@ function App() {
 
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
+  const [reference, setReference] = useState("");
+  const navigate = useNavigate();
 
   // pass request and get response from my local backend server 
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/g', { data: inputText });
-      console.log(response.data);  
-      setResult(response.data);
+      const response = await axios.post('http://localhost:4000/talk', { data: inputText });
+      console.log(response.data.data);
+      console.log(response.data.key);  
+      setResult(response.data.data);
+      setReference(response.data.key);
     } catch (error) {
       console.error(error);
     }
@@ -27,6 +32,11 @@ function App() {
   const handleAPI = async () => {
     await fetchData();
   }
+
+  // navigating to the next page 
+  const nextPage = () => {
+    navigate("/rating/"+reference);
+  };
 
   // this is just a static function to test the different stats of our responses after clicking the button
   const handleTestSubmit = async () => {
@@ -174,15 +184,12 @@ function App() {
             </p>
           </div>
 
-          {/*  Rating button  */}
+          {/*  Rating button and passing the key reference to the rating page  */}
 
-          <Link to="/rating">
-             <button className="rating-button" onClick={handleAPI}>
+             <button className="rating-button" onClick={nextPage}>
                  Rate this answer trust level
                  <img src={imageSrc} alt="Image" />
              </button>
-          </Link>
-
           
           {/* thos are our buttons, they are all gray in gray color because we didn't enter any text to verify*/}
 
