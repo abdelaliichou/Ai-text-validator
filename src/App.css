@@ -13,17 +13,50 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: flex-start;
   background-color: #222222;
   border-radius: 12px;
-  width: 97vw;
-  height: 15vh;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0; /* Set initial opacity to 0 for fade-in animation */
+  animation: fadeIn 0.5s forwards; /* Apply fade-in animation */
+}
+
+.header:hover {
+  transform: scale(1.09); /* Scale up slightly on hover */
+  transition: transform 0.3s ease; /* Add smooth transition */
 }
 
 .page-heading {
-  font-size: 3rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
   color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation keyframes for fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start with opacity 0 */
+  }
+  to {
+    opacity: 1; /* End with opacity 1 */
+  }
+}
+
+.header2{
+  display: flex;
+  flex-direction: row ;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.hookToHeader{
+  background-color: #222222;
+  width: 40px;
+  height: 5px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 

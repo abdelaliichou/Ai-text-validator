@@ -66,9 +66,13 @@ function App() {
 
   return (
     <div className="page-container">
-      <div className="header">
-      <h1 className="page-heading">Check your health related information...</h1>
+      <div className="header2">
+        <div className="hookToHeader"/>
+        <div className="header">
+          <h1 className="page-heading">HeReFaNMi's Model</h1>
+        </div>
       </div>
+      
       {/*  this is the input section where we in write our information  */}
       <div className="input-section">
         <input
