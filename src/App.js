@@ -19,11 +19,12 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/talk', { data: inputText });
+      const response = await axios.post('http://localhost:4000/loopTalk', { data: inputText });
       console.log(response.data.data);
       console.log(response.data.key);  
       setResult(response.data.data);
       setReference(response.data.key);
+      setInputText("")
     } catch (error) {
       console.error(error);
     }
@@ -65,13 +66,15 @@ function App() {
 
   return (
     <div className="page-container">
+      <div className="header">
       <h1 className="page-heading">Check your health related information...</h1>
+      </div>
       {/*  this is the input section where we in write our information  */}
       <div className="input-section">
         <input
           type="text"
           className="text-input"
-          placeholder="Waiting..."
+          placeholder="Ask anything..."
           value={inputText}
           onChange={handleTextChange}
         />
