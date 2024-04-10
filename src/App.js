@@ -2,8 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import imageSrc from './rating.svg';
-
+import imageSrc from './HeReFanMi.png';
 
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
   const [reference, setReference] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   // pass request and get response from my local backend server 
@@ -24,7 +24,6 @@ function App() {
       console.log(response.data.key);  
       setResult(response.data.data);
       setReference(response.data.key);
-      setInputText("")
     } catch (error) {
       console.error(error);
     }
@@ -39,63 +38,42 @@ function App() {
     navigate("/rating/"+reference);
   };
 
-  // this is just a static function to test the different stats of our responses after clicking the button
-  const handleTestSubmit = async () => {
-    switch (result) {
-      case "":
-        setResult("trust_worthy");
-        break;
-      case "trust_worthy":
-        setResult("doutable");
-        break;
-      case "doutable":
-        setResult("fake");
-        break;
-      case "fake":
-        setResult("");
-        break;
-      default:
-        setResult("");
-    }
-  };
-
   // a use effect method to change the text after writing
   const handleTextChange = (e) => {
     setInputText(e.target.value);
   };
 
   return (
+    
     <div className="page-container">
-      <div className="header2">
-        <div className="hookToHeader"/>
-        <div className="header">
-          <h1 className="page-heading">HeReFaNMi's Model</h1>
-        </div>
-      </div>
+
+    <img className="logo" src={imageSrc} alt="Image" />
       
       {/*  this is the input section where we in write our information  */}
+
       <div className="input-section">
         <input
           type="text"
           className="text-input"
-          placeholder="Ask anything..."
+          placeholder="How i can help you today ?"
           value={inputText}
           onChange={handleTextChange}
         />
 
         <select className="drop" id="options" >
-           <option value="">Select an AI-Model</option>
-           <option value="option2">BARD ( PALM )</option>
-           <option value="option1">GEMINI</option>
-           <option value="option3">GPT4</option>
-           <option value="option3">GPT3.5</option>
-           <option value="option3">MISTRAL</option>
-           
+          <option value="">Select an AI-Model</option>
+          <option value="option2">BARD ( PALM )</option>
+          <option value="option1">GEMINI</option>
+          <option value="option3">GPT4</option>
+          <option value="option3">GPT3.5</option>
+          <option value="option3">MISTRAL</option>
+          
         </select>
 
         {/*  this is the button to click to check the infomation worth  */}
+        
         <button className="analyze-button" onClick={handleAPI}>
-          Analyze
+          Check Reliability
         </button>
       </div>
 
@@ -104,7 +82,12 @@ function App() {
 
       {result === "trust_worthy" ? (
         <>
-          {/*  in this case, we show the green button with the trust worthy info from the API  */}
+
+          {/* Modal for displaying the green alert message */}
+          
+          <div className="trust">
+            Your infomration is TRUST WORTHY !
+          </div>
 
           <div className="response-section">
             <p className="response-text">Your infomration is TRUST WORTHY</p>
@@ -112,17 +95,15 @@ function App() {
             <p className="response-text">Link to the text from API </p>
           </div>
 
-          {/*  thos are our buttons, the green is on */}
-
-          <div className="result-section">
-            <div className="result-image good"></div>
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-          </div>
         </>
       ) : result === "doutable" ? (
         <>
-          {/*  in this case, we show the yellow button with the doutable info from the API  */}
+
+          {/* Modal for displaying the orang alert message */}
+          
+          <div className="doutable">
+            Your infomration is DOUTABLE !
+          </div>
 
           <div className="response-section">
             <p className="response-text">Your infomration is DOUTABLE</p>
@@ -130,53 +111,30 @@ function App() {
             <p className="response-text">Not supported reference </p>
           </div>
 
-          {/*  thos are our buttons, the yellow is on */}
-
-          <div className="result-section">
-            <div className="result-image test"></div>
-            <div className="result-image normal"></div>
-            <div className="result-image test"></div>
-          </div>
         </>
       ) : result === "Please try to ask something related to to medical field... !" ? (
         <>
-          {/*  in this case, we show the red button with the fake info from the API  */}
 
-          <div className="response-section">
-            <p className="response-text">
-              {result}
-            </p>
-            <p className="response-text">
-              {/* Text response from the LARGE LANGUAGE MODEL */}
-            </p>
-            <p className="response-text">
-              {/* Link to the reference from the LARGE LANGUAGE MODEL */}
-            </p>
+          {/* Modal for displaying the red alert message */}
+          
+          <div className="wrong">
+            Please try to ask something related to to medical field !
           </div>
-          {/*  thos are our buttons, the red is on */}
 
-          <div className="result-section">
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-            <div className="result-image bad"></div>
-          </div>
         </>
       ) : result === "" ? (
         <>
           {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */}
-
-          <div className="response-section">
-            <p className="response-text">How can i help you today ?</p>
-          </div>
-          
-          <div className="result-section">
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-          </div>
         </>
       ) : (
         <>
+
+          {/* Modal for displaying the red alert message */}
+          
+          <div className="trust">
+            Your information is related to medical field !
+          </div>
+
           {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
 
           <div className="response-section">
@@ -190,21 +148,7 @@ function App() {
               {/* Link to the reference from the LARGE LANGUAGE MODEL */}
             </p>
           </div>
-
-          {/*  Rating button and passing the key reference to the rating page  */}
-
-             <button className="rating-button" onClick={nextPage}>
-                 Rate this answer trust level
-                 <img src={imageSrc} alt="Image" />
-             </button>
           
-          {/* thos are our buttons, they are all gray in gray color because we didn't enter any text to verify*/}
-
-          <div className="result-section">
-            <div className="result-image good"></div>
-            <div className="result-image test"></div>
-            <div className="result-image test"></div>
-          </div>
         </>
       )}
     </div>
