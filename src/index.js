@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import RatingPage from './Rating'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -13,7 +12,6 @@ root.render(
       <Routes>
       <Route index element={<App />} />
       <Route path="*" element={<App />} />
-      <Route path="/rating/:ref" element={<RatingPage />} />
     </Routes>      
     </Router>
   </React.StrictMode>

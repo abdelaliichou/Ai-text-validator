@@ -14,7 +14,8 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
   const [reference, setReference] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
+  const [rating, setRating] = useState("0");
+  const [hoverRating, setHoverRating] = useState(null);
   const navigate = useNavigate();
 
   // pass request and get response from my local backend server 
@@ -30,6 +31,27 @@ function App() {
       console.error(error);
     }
   };
+
+  const saveRating = async () => {
+    try {
+      const datum = {
+        rating : rating,
+        reference : reference
+      }
+      const response = await axios.post('http://localhost:4000/save', datum
+      );
+      console.log(response.data);
+
+      // showing alert message if setting the rating was good 
+      if(response.data === "SUCCESS"){
+        toast.success("Rating saved !", {
+          position: "top-center"
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+};
 
   const handleAPI = async () => {
     if(inputText === ""){
@@ -51,11 +73,26 @@ function App() {
     setInputText(e.target.value);
   };
 
+  // Handeling rating mouse events 
+  const handleRatingClick = (value) => {
+    setRating(value);
+  };
+
+  const handleMouseEnter = (value) => {
+    setHoverRating(value);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverRating(null);
+  };
+
   return (
     
     <div className="page-container">
 
-    <img className="logo" src={imageSrc} alt="Image" />
+      {/* this is the logo  */}
+
+      <img className="logo" src={imageSrc} alt="Image" />
       
       {/*  this is the input section where we in write our information  */}
 
@@ -138,6 +175,9 @@ function App() {
       ) : (
         <>
 
+          <ToastContainer />
+
+
           {/* Modal for displaying the red alert message */}
           
           <div className="trust">
@@ -157,9 +197,34 @@ function App() {
               {/* Link to the reference from the LARGE LANGUAGE MODEL */}
             </p>
           </div>
-          
+
+           {/* this is the rating place */}
+
+          <div className="rating-page"> 
+            <p className="rating-text">
+              How much you trust our Model's generated response ?
+            </p>
+            <div className="rating-container">
+              {[1, 2, 3, 4, 5].map((value) => (
+                <span
+                  key={value}
+                  className={value <= (hoverRating || rating) ? "active" : ""}
+                  onClick={() => handleRatingClick(value)}
+                  onMouseEnter={() => handleMouseEnter(value)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  &#9733;
+                </span>
+              ))}
+            </div>
+            <button className="rating-button" onClick={saveRating}>
+                  Save opinion
+            </button>    
+          </div>
+
         </>
       )}
+
     </div>
   );
 }
