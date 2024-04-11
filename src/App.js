@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import imageSrc from './HeReFanMi.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -30,6 +32,12 @@ function App() {
   };
 
   const handleAPI = async () => {
+    if(inputText === ""){
+      toast.error("Please enter your prompt !", {
+        position: "top-center"
+      });
+      return;
+    }
     await fetchData();
   }
 
@@ -61,7 +69,7 @@ function App() {
         />
 
         <select className="drop" id="options" >
-          <option value="">Select an AI-Model</option>
+          <option value="">Select Model</option>
           <option value="option2">BARD ( PALM )</option>
           <option value="option1">GEMINI</option>
           <option value="option3">GPT4</option>
@@ -125,6 +133,7 @@ function App() {
       ) : result === "" ? (
         <>
           {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */}
+          <ToastContainer />
         </>
       ) : (
         <>
