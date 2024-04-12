@@ -276,6 +276,29 @@ input::placeholder {
 }
 
 
+
+
+/* /////////////////////////////////////////// link  ///////////////////////////////////////////////////////*/
+
+
+
+a {
+  color: #0F1F7D;
+}
+
+/* mouse over link */
+a:hover {
+  color: green;
+}
+
+/* selected link */
+a:active {
+  color: rgb(109, 109, 255);
+}
+
+
+
+
 /* /////////////////////////////////////////// Responsivite //////////////////////////////////////////////// */
 
 
@@ -571,7 +594,7 @@ input::placeholder {
   
   .doutable {
     padding: 20px;
-    background-color: #ffd105;
+    background-color: #e0a015;
     color: white;
     width : 290px;
     font-size: 1.2rem;
