@@ -450,7 +450,7 @@ a:active {
     color: #363636;
     font-size: 1.2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 3px solid #b3bae0;
+    border: 3px solid #e9e9e9;
   }
 
   .analyze-button {
@@ -598,7 +598,7 @@ a:active {
     color: #363636;
     font-size: 1.2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 3px solid #b3bae0;
+    border: 3px solid #e9e9e9;
   }
 
   .response-section{
