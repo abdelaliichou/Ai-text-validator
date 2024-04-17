@@ -133,6 +133,8 @@ function App() {
           onChange={handleTextChange}
         />
 
+      {/*  this is the drop down section to select the AI model  */}
+
         <div className="dropdown">
           <div className="dropdown-header" onClick={toggleDropdown}>
             {selectedItem ? selectedItem.label : "Select Model"}
@@ -146,7 +148,6 @@ function App() {
                   // means that we selected this option, so we dont show the lock image
                   (
                     <>
-                      {/* <img src={option.imageUrl} alt={option.label} /> */}
                       {option.label}
                     </>
                   ): 
