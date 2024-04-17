@@ -19,6 +19,21 @@ function App() {
   const [reference, setReference] = useState("");
   const [rating, setRating] = useState("0");
   const [hoverRating, setHoverRating] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const dropDownOptions = [
+    { id: 1, label: 'BARD (PALM)', imageUrl: lockIMG },
+    { id: 2, label: 'GEMINI', imageUrl: lockIMG },
+    { id: 3, label: 'GPT4', imageUrl: lockIMG },
+    { id: 4, label: 'GPT3.5', imageUrl: lockIMG },
+    { id: 5, label: 'MISTRAL', imageUrl: lockIMG }
+  ];
+  const handleDropItemClick = (item) => {
+    setSelectedItem(item);
+    console.log(item.label)
+    setIsOpen(false);
+  };
+  const toggleDropdown = () => setIsOpen(!isOpen);
   const navigate = useNavigate();
 
   // pass request and get response from my local backend server 
@@ -118,14 +133,22 @@ function App() {
           onChange={handleTextChange}
         />
 
-        <select className="drop" id="options">
-          <option value="">Select Model</option>
-          <option value="option2" >BARD ( PALM )</option>
-          <option value="option1" >GEMINI</option>
-          <option value="option3" >GPT4</option>
-          <option value="option3" >GPT3.5</option>
-          <option value="option3" >MISTRAL</option>
-        </select>
+        <div className="dropdown">
+          <div className="dropdown-header" onClick={toggleDropdown}>
+            {selectedItem ? selectedItem.label : "Select Model"}
+            <span className="caret"></span>
+          </div>
+          {isOpen && (
+            <ul className="dropdown-menu">
+              {dropDownOptions.map(option => (
+                <li key={option.id} onClick={() => handleDropItemClick(option)}>
+                  <img src={option.imageUrl} alt={option.label} />
+                  {option.label}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         {/*  this is the button to click to check the infomation worth  */}
         
