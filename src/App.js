@@ -20,7 +20,7 @@ function App() {
   const [rating, setRating] = useState("0");
   const [hoverRating, setHoverRating] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState("");
   const dropDownOptions = [
     { id: 1, label: 'BARD (PALM)', imageUrl: lockIMG },
     { id: 2, label: 'GEMINI', imageUrl: lockIMG },
@@ -142,8 +142,21 @@ function App() {
             <ul className="dropdown-menu">
               {dropDownOptions.map(option => (
                 <li key={option.id} onClick={() => handleDropItemClick(option)}>
-                  <img src={option.imageUrl} alt={option.label} />
-                  {option.label}
+                  {selectedItem.label === option.label ? 
+                  // means that we selected this option, so we dont show the lock image
+                  (
+                    <>
+                      {/* <img src={option.imageUrl} alt={option.label} /> */}
+                      {option.label}
+                    </>
+                  ): 
+                  // means that we havn't select this option, so we show the lock image
+                  (
+                    <>
+                      <img src={option.imageUrl} alt={option.label} />
+                      {option.label}
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
