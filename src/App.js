@@ -40,7 +40,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/medicalTalk', { data: inputText });
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', { data: inputText });
       console.log(response.data.data);
       console.log(response.data.key);  
       console.log(response.data.label);
@@ -62,7 +62,7 @@ function App() {
         rating : rating,
         reference : reference
       }
-      const response = await axios.post('http://localhost:4000/save', datum
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum
       );
       console.log(response.data);
 
