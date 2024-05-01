@@ -21,6 +21,7 @@ function App() {
   const [hoverRating, setHoverRating] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
+  const [loading, setLoading] = useState(false);
   const dropDownOptions = [
     { id: 1, label: 'BARD (PALM)', imageUrl: lockIMG },
     { id: 2, label: 'GEMINI', imageUrl: lockIMG },
@@ -40,7 +41,16 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', { data: inputText });
+      setLoading(true); // Set loading state to true when starting the request
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', { data: inputText },{
+      // const response = await axios.post('http://127.0.0.1:4000/medicalTalk', { data: inputText },{
+        onUploadProgress: progressEvent => {
+          // Handle upload progress if needed
+        },
+        onDownloadProgress: progressEvent => {
+          // Handle download progress if needed
+        }
+      });
       console.log(response.data.data);
       console.log(response.data.key);  
       console.log(response.data.label);
@@ -53,6 +63,9 @@ function App() {
 
     } catch (error) {
       console.error(error);
+    } finally
+    {
+      setLoading(false); // Set loading state to false when request is complete
     }
   };
 
@@ -63,6 +76,7 @@ function App() {
         reference : reference
       }
       const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum
+      // const response = await axios.post('http://127.0.0.1:4000/save', datum
       );
       console.log(response.data);
 
@@ -173,6 +187,15 @@ function App() {
 
       {/*  here is the logic of showing different componenets based on the "result" variable
       which is the response of our API */}
+
+      {loading ? ( 
+        <div className="loading-indicator"></div> // Display loading indicator if loading state is true
+      ) : (
+        <></>
+      )}
+
+      {/* Display result, label, source, reference, etc. */}
+
 
       {label === "trustworthy" ? (
         <>
