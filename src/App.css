@@ -40,10 +40,26 @@
   color: #222222;
 }
 
+.header-text {
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 60px;
+  color: #222222;
+}
+
 .input-section {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-section-opinion {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
   align-items: center;
   justify-content: space-between;
 }
@@ -367,8 +383,25 @@ a:active {
 /* /////////////////////////////////////////// Responsivite //////////////////////////////////////////////// */
 
 
+@media (max-width: 1050px) {
+  .header-text {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px;
+    color: #222222;
+  }
+}
 
 @media (max-width: 950px) {
+  .header-text {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px;
+    color: #222222;
+  }
+
   .dropdown {
     color:  white;
     border-radius: 10px;
@@ -463,6 +496,14 @@ a:active {
 }
 
 @media (max-width: 500px) {
+  .header-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 60px;
+    color: #222222;
+  }
+
   .response-text {
     font-size: 1.2rem;
     font-weight: normal;
