@@ -17,14 +17,16 @@ function App() {
   const [source, setSrouce] = useState([]);  
   const [reference, setReference] = useState("");
   const [rating, setRating] = useState("0");
+  const [ratingOpinion, setRatingOpinion] = useState("0");
   const [hoverRating, setHoverRating] = useState(null);
+  const [hoverOpinion, setHoverOpinion] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
   const [loading, setLoading] = useState(false);
   const [userScroll, setUserScroll] = useState(false);
   const [life, setLife] = useState(0);
   const [asked, setAsked] = useState(false);
-  const [expectation, setExpectation] = useState("");
+
   const dropDownOptions = [
     { id: 1, label: 'BARD (PALM)', imageUrl: lockIMG },
     { id: 2, label: 'GEMINI', imageUrl: lockIMG },
@@ -55,7 +57,7 @@ function App() {
       setLoading(true); // Set loading state to true when starting the request
       const datum = {
         data : inputText,
-        expectation : expectation
+        opinion : ratingOpinion
       }
       // const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', datum ,{
       const response = await axios.post('http://127.0.0.1:4000/medicalTalk', datum ,{
@@ -94,19 +96,7 @@ function App() {
     }
   };
 
-  // function to know if the user has scrolled all the way down to the bottom of the response
-  useEffect(() => {
-    const onscroll = () => {
-      const scrolledTo = window.scrollY + window.innerHeight;
-      const isReachBottom = document.body.scrollHeight === scrolledTo;
-      if (isReachBottom) alert("reached bottom");
-    };
-    window.addEventListener("scroll", onscroll);
-    return () => {
-      window.removeEventListener("scroll", onscroll);
-    };
-  }, []);
-
+  // saving the user rating
   const saveRating = async () => {
     try {
       const datum = {
@@ -128,6 +118,36 @@ function App() {
     }
   };
 
+  // saving the user opinion
+  const handleOPINION = () => {
+    if(inputText === ""){
+      toast.error("Please enter your prompt !", {
+        position: "top-center"
+      });
+      return;
+    }
+
+    if(ratingOpinion === "0"){
+      toast.error("Please enter your opinion rating about your prompt !", {
+        position: "top-center"
+      });
+      return;
+    }
+
+    // showing alert message if opinion was not entered 
+    toast.success("Opinion and prompt saved !", {
+      position: "top-center"
+    });
+
+    // going top next page by seeting the variables after 5 seconds
+    setTimeout(() => {
+      setAsked(true)    
+      // setInputText("")
+    }, 6000);
+
+  }
+  
+  // button on click 
   const handleAPI = async () => {
     if(inputText === ""){
       toast.error("Please enter your prompt !", {
@@ -140,7 +160,7 @@ function App() {
       return;
     }
 
-    console.log(life)
+    console.log("life : ",life)
 
     if (life === 3) {
       toast.error("You did 3 non medical questions, Please try later !", {
@@ -153,60 +173,70 @@ function App() {
     await fetchData();
   }
 
-  const handleOPINION = () => {
-    if(inputText === ""){
-      toast.error("Please enter your opinion !", {
-        position: "top-center"
-      });
-      return;
-    }
-
-    // showing alert message if opinion was not entered 
-    toast.success("Opinion saved !", {
-      position: "top-center"
-    });
-
-    // going top next page by seeting the variables after 5 seconds
-    setTimeout(() => {
-      setExpectation(inputText)
-      setAsked(true)    
-      setInputText("")
-    }, 6000);
-
-  }
-
   // a use effect method to change the text after writing
   const handleTextChange = (e) => {
     setInputText(e.target.value);
   };
 
-  // Handeling rating mouse events 
+  // Handeling rating and opinion mouse events 
   const handleRatingClick = (value) => {
     setRating(value);
+  };
+
+  const handleOpinionClick = (value) => {
+    setRatingOpinion(value);
   };
 
   const handleMouseEnter = (value) => {
     setHoverRating(value);
   };
 
+  const handleMouseOpinionEnter = (value) => {
+    setHoverOpinion(value);
+  };
+
   const handleMouseLeave = () => {
     setHoverRating(null);
+  };
+
+  const handleMouseOpinionLeave = () => {
+    setHoverOpinion(null);
   };
 
   const handleEnterpress = (e) => {
     if (e.key === 'Enter') {
       // Call your function here
-      console.log("clicked")
       if( asked === true ){
         handleAPI();
-        return;
       }
-
-      handleOPINION();
     }
   };
 
+  // calling the handleOPINION function whenever the opinion changes 
+  useEffect(() => {
+    if (ratingOpinion !== "0") {
+      setTimeout(() => {
 
+        console.log("opinion : ", ratingOpinion)
+        handleOPINION()
+
+      }, 500);  
+    }
+  }, [ratingOpinion]);
+
+  // function to know if the user has scrolled all the way down to the bottom of the response
+  useEffect(() => {
+    const onscroll = () => {
+      const scrolledTo = window.scrollY + window.innerHeight;
+      const isReachBottom = document.body.scrollHeight === scrolledTo;
+      if (isReachBottom) alert("reached bottom");
+    };
+    window.addEventListener("scroll", onscroll);
+    return () => {
+      window.removeEventListener("scroll", onscroll);
+    };
+  }, []);
+ 
   return (
 
     <>
@@ -215,69 +245,86 @@ function App() {
         // means that the user hasn't entered his opinion yet, so we show to him the opinion page
 
         <div className="page-container">
-
+         
           {/* this is the logo  */}
     
           <img className="logo" src={logoIMG} alt="Image" />
     
-          {/*  just the header text */}    
-    
-          <p className="header-text">
-            Before asking our model, What do you
-            <br></br>
-            expect the reponse will be ?
-          </p>
-          
+
           {/*  this is the input section where we in write our information  */}
     
-          <div className="input-section-opinion">
+          <div className="input-section">
             <input
               type="text"
               className="text-input"
-              placeholder="Youe response expectation ?"
+              placeholder="Write your health information here..."
               onKeyDown={handleEnterpress}
               value={inputText}
               onChange={handleTextChange}
             />
     
-          {/*  this is the drop down section to select the AI model  */}
-    
-            <div className="dropdown">
-              <div className="dropdown-header" onClick={toggleDropdown}>
-                {selectedItem ? selectedItem.label : "Select Model"}
-                <span className="caret"></span>
-              </div>
-              {isOpen && (
-                <ul className="dropdown-menu">
-                  {dropDownOptions.map(option => (
-                    <li key={option.id} onClick={() => handleDropItemClick(option)}>
-                      {selectedItem.label === option.label ? 
-                      // means that we selected this option, so we dont show the lock image
-                      (
-                        <>
-                          {option.label}
-                        </>
-                      ): 
-                      // means that we havn't select this option, so we show the lock image
-                      (
-                        <>
-                          <img src={option.imageUrl} alt={option.label} />
-                          {option.label}
-                        </>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              )}
+          
+          {/* this is the rating place */}
+
+          {(inputText !== "") && 
+          <div className="opinion-page"> 
+            <p className="rating-text">
+            How much is the trustworthiness of the prompt you provided ?
+            </p>
+            <div className="rating-container">
+              {[1, 2, 3, 4, 5].map((value) => (
+                <span
+                  key={value}
+                  className={value <= (hoverOpinion || ratingOpinion) ? "active" : ""}
+                  onClick={() => handleOpinionClick(value)}
+                  onMouseEnter={() => handleMouseOpinionEnter(value)}
+                  onMouseLeave={handleMouseOpinionLeave}
+                >
+                  &#9733;
+                </span>
+              ))}
             </div>
+          </div>}
     
-          {/*  this is the button to click to check the infomation worth  */}
-            
-            <button className="analyze-button" onClick={handleOPINION}>
-              Save expectation
-            </button>
+           {/*  this is the drop down section to select the AI model  */}
     
+          <div className="dropdown">
+            <div className="dropdown-header" onClick={toggleDropdown}>
+              {selectedItem ? selectedItem.label : "Select Model"}
+              <span className="caret"></span>
+            </div>
+            {isOpen && (
+              <ul className="dropdown-menu">
+                {dropDownOptions.map(option => (
+                  <li key={option.id} onClick={() => handleDropItemClick(option)}>
+                    {selectedItem.label === option.label ? 
+                    // means that we selected this option, so we dont show the lock image
+                    (
+                      <>
+                        {option.label}
+                      </>
+                    ): 
+                    // means that we havn't select this option, so we show the lock image
+                    (
+                      <>
+                        <img src={option.imageUrl} alt={option.label} />
+                        {option.label}
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
+
+
+          {/*  this is the button to click to check the infomation worth  */}
+        
+          {/* <button className="analyze-button" onClick={handleOPINION}>
+            Go to model
+          </button> */}
+
+        </div>
     
           <ToastContainer />
     
@@ -336,7 +383,7 @@ function App() {
               </ul>
             )}
           </div>
-  
+
           {/*  this is the button to click to check the infomation worth  */}
           
           <button className="analyze-button" onClick={handleAPI}>
