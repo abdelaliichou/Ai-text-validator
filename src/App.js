@@ -144,7 +144,6 @@ function App() {
       setAsked(true)    
       // setInputText("")
     }, 6000);
-
   }
   
   // button on click 
@@ -208,6 +207,13 @@ function App() {
       // Call your function here
       if( asked === true ){
         handleAPI();
+        return ;
+      }
+
+      if(ratingOpinion === "0"){
+        toast.error("Please enter your opinion rating about your prompt !", {
+          position: "top-center"
+        });
       }
     }
   };
@@ -317,24 +323,16 @@ function App() {
             )}
           </div>
 
-
-          {/*  this is the button to click to check the infomation worth  */}
-        
-          {/* <button className="analyze-button" onClick={handleOPINION}>
-            Go to model
-          </button> */}
-
         </div>
     
           <ToastContainer />
     
         </div>
 
-      ) :
+      ) : (
       
-        // means that the user has entered his opinion, so we show to him the model page
-
-      (
+        // means that the user has entered his opinion, so we show to him the model page"
+        
         <div className="page-container">
 
         {/* this is the logo  */}

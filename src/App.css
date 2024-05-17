@@ -660,6 +660,23 @@ a:active {
     border-radius: 12px;
     margin-bottom: 20px;
   }
+
+  .rating-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    color: black;
+  }
+  
+  /* Rating stars */
+  .rating-container {
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 45px; /* Adjust the size of the stars */
+  }
+  
   
 }
 
@@ -835,4 +852,21 @@ a:active {
     border-radius: 12px;
     margin-bottom: 20px;
   }
+
+  .rating-text {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    color: black;
+  }
+  
+  /* Rating stars */
+  .rating-container {
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 45px; /* Adjust the size of the stars */
+  }
+  
 }
