@@ -120,6 +120,9 @@ function App() {
 
   // saving the user opinion
   const handleOPINION = () => {
+
+    if(asked === true) return;
+
     if(inputText === ""){
       toast.error("Please enter your prompt !", {
         position: "top-center"
@@ -220,7 +223,7 @@ function App() {
 
   // calling the handleOPINION function whenever the opinion changes 
   useEffect(() => {
-    if (ratingOpinion !== "0") {
+    if (ratingOpinion !== "0")  {
       setTimeout(() => {
 
         console.log("opinion : ", ratingOpinion)
@@ -232,16 +235,27 @@ function App() {
 
   // function to know if the user has scrolled all the way down to the bottom of the response
   useEffect(() => {
-    const onscroll = () => {
+
+
+    const handleScroll = () => {
+
       const scrolledTo = window.scrollY + window.innerHeight;
-      const isReachBottom = document.body.scrollHeight === scrolledTo;
-      if (isReachBottom) alert("reached bottom");
+      const isReachBottom = document.body.scrollHeight === scrolledTo ;
+  
+      if (isReachBottom && (userScroll === false)) {
+        console.log("you scrolled until the bottom !");
+        setUserScroll(true);
+      }
     };
-    window.addEventListener("scroll", onscroll);
+  
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+  
+    // Clean up event listener on component unmount
     return () => {
-      window.removeEventListener("scroll", onscroll);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [userScroll]);
  
   return (
 
