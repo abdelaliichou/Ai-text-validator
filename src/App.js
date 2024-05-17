@@ -21,7 +21,9 @@ function App() {
   const [hoverRating, setHoverRating] = useState(null);
   const [hoverOpinion, setHoverOpinion] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState(
+    { id: 4, label: 'GPT3.5', imageUrl: lockIMG }
+  );
   const [loading, setLoading] = useState(false);
   const [userScroll, setUserScroll] = useState(false);
   const [life, setLife] = useState(0);
@@ -98,6 +100,14 @@ function App() {
 
   // saving the user rating
   const saveRating = async () => {
+
+    if(rating === "0"){
+      toast.error("Please enter your rating about the model's response !", {
+        position: "top-center"
+      });
+      return;
+    }
+
     try {
       const datum = {
         rating : rating,
@@ -146,7 +156,7 @@ function App() {
     setTimeout(() => {
       setAsked(true)    
       // setInputText("")
-    }, 6000);
+    }, 2000);
   }
   
   // button on click 
@@ -233,9 +243,16 @@ function App() {
     }
   }, [ratingOpinion]);
 
+  // calling the saveRating function whenever the rating changes 
+  useEffect(() => {
+    if (rating !== "0")  {
+      console.log("rating : ", rating)
+      saveRating()
+    }
+  }, [rating]);
+
   // function to know if the user has scrolled all the way down to the bottom of the response
   useEffect(() => {
-
 
     const handleScroll = () => {
 
@@ -310,7 +327,7 @@ function App() {
     
           <div className="dropdown">
             <div className="dropdown-header" onClick={toggleDropdown}>
-              {selectedItem ? selectedItem.label : "Select Model"}
+              {selectedItem ? selectedItem.label : "GPT3.5"}
               <span className="caret"></span>
             </div>
             {isOpen && (
@@ -369,7 +386,7 @@ function App() {
   
           <div className="dropdown">
             <div className="dropdown-header" onClick={toggleDropdown}>
-              {selectedItem ? selectedItem.label : "Select Model"}
+              {selectedItem ? selectedItem.label : "GPT3.5"}
               <span className="caret"></span>
             </div>
             {isOpen && (
@@ -454,10 +471,7 @@ function App() {
                   &#9733;
                 </span>
               ))}
-            </div>
-            <button className="rating-button" onClick={saveRating}>
-                  Save opinion
-            </button>    
+            </div>  
           </div>
   
           </>
@@ -499,10 +513,7 @@ function App() {
                   &#9733;
                 </span>
               ))}
-            </div>
-            <button className="rating-button" onClick={saveRating}>
-                  Save opinion
-            </button>    
+            </div> 
           </div>
   
           </>
@@ -547,10 +558,7 @@ function App() {
                   &#9733;
                 </span>
               ))}
-            </div>
-            <button className="rating-button" onClick={saveRating}>
-                  Save opinion
-            </button>    
+            </div>  
           </div>
   
           </>
@@ -569,7 +577,9 @@ function App() {
         ) : (
           <>
             {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */} 
+
             <ToastContainer />
+
           </>
         )
         }
