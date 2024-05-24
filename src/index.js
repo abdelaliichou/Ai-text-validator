@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -10,9 +11,12 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-      <Route index element={<App />} />
-      <Route path="*" element={<App />} />
-    </Routes>      
+        <Route index element={<Login />} />
+        <Route path="*" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<App />} />
+        <Route path="/home/:ref" element={<App />} />
+      </Routes>      
     </Router>
   </React.StrictMode>
   

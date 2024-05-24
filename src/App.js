@@ -1,8 +1,8 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import logoIMG from './HeReFanMi.png';
-import lockIMG from './lock.png';
+import logoIMG from './icons/HeReFanMi.png';
+import lockIMG from './icons/lock.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
