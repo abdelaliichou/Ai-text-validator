@@ -27,11 +27,6 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // navigating to the next page 
-  const nextPage = () => {
-    navigate("/home");
-  };
-
   // a use effect method to change the text after writing
   const handleEmailTextChange = (e) => {
     setEmail(e.target.value);
@@ -121,22 +116,22 @@ function Login() {
 
   const login = async (e) => {
     // e.preventDefault();
+    setLoading(true);
+
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
 
         // Signed in
         const user = userCredential.user;
         console.log(user)
+
+        setLoading(false);
         toast.success("Logged in successfully!", {
           position: "top-center"
         });
-
-        // going to next page 
-        setTimeout(() => {
-          navigate("/home")
-        }, 2000);
     })
     .catch((error) => {
+        setLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage)
@@ -149,22 +144,22 @@ function Login() {
 
   const signup = async (e) => {
     // e.preventDefault()
+    setLoading(true);
+
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+
           // Signed in
           const user = userCredential.user;
           console.log(user);
 
+          setLoading(false);
           toast.success("Signed up successfully!", {
             position: "top-center"
           });
-  
-          // going to next page 
-          setTimeout(() => {
-            navigate("/home")
-          }, 2000);
       })
       .catch((error) => {
+          setLoading(false);
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
@@ -184,25 +179,30 @@ function Login() {
     });
   }
 
-
   // get the current signed in user 
   useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
+    onAuthStateChanged(auth, (User) => {
+        if (User) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = user.uid;
-          // ...
-          console.log("uid", uid)
+          
+          console.log("uid1", User.uid)
+
+          setTimeout(() => {
+            nextPage(User.uid)
+          }, 2000);
+
         } else {
           // User is signed out
-          // ...
           console.log("user is logged out")
         }
       });
      
   }, [])
 
+  const nextPage = (id) => {
+    navigate(`/home/${id}`)
+  }
  
 
   return (
@@ -272,31 +272,31 @@ function Login() {
             </div>
 
             <div className="auth-container">
-              <button className="google-button" onClick={nextPage}>
+              <button className="google-button" onClick={()=>{}}>
                   <img src={googleIMG} alt="Google Logo" className="google-icon" />
               </button>
 
               <div className="space"/>
 
-              <button className="google-button" onClick={nextPage}>
+              <button className="google-button" onClick={()=>{}}>
                   <img src={phoneIMG} alt="Google Logo" className="fb-icon" />
               </button>
 
               <div className="space"/>
 
-              <button className="google-button" onClick={nextPage}>
+              <button className="google-button" onClick={()=>{}}>
                   <img src={facebookIMG} alt="Google Logo" className="fb-icon" />
               </button>
 
               <div className="space"/>
 
-              <button className="google-button" onClick={nextPage}>
+              <button className="google-button" onClick={()=>{}}>
                   <img src={microsoftIMG} alt="Google Logo" className="google-icon" />
               </button>
 
               <div className="space"/>
 
-              <button className="google-button" onClick={nextPage}>
+              <button className="google-button" onClick={()=>{}}>
                   <img src={appleIMG} alt="Google Logo" className="apple-icon" />
               </button>
             </div>

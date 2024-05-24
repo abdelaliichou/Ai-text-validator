@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logoIMG from './icons/HeReFanMi.png';
 import lockIMG from './icons/lock.png';
@@ -11,6 +12,8 @@ function App() {
 
   // declaration of all our variables
 
+  // Getting the params
+  const {user} = useParams();  
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
   const [label, setLabel] = useState("");  
@@ -188,6 +191,7 @@ function App() {
   // a use effect method to change the text after writing
   const handleTextChange = (e) => {
     setInputText(e.target.value);
+    console.log(user);
   };
 
   // Handeling rating and opinion mouse events 
