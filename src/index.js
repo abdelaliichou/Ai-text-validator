@@ -5,18 +5,21 @@ import App from './App';
 import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { UserProvider } from './userContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
+    <UserProvider>
       <Routes>
-        <Route index element={<Login />} />
-        <Route path="*" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<App />} />
-        <Route path="/home/:user" element={<App />} />
-      </Routes>      
+          <Route index element={<Login />} />
+          <Route path="*" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<App />} />
+      </Routes>
+    </UserProvider>      
     </Router>
   </React.StrictMode>
   

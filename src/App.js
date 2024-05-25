@@ -1,19 +1,27 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import { signOut, onAuthStateChanged  } from 'firebase/auth';
+import { auth } from './firebase';
 import axios from 'axios';
+import logoutIMG from './icons/logout.png';
 import logoIMG from './icons/HeReFanMi.png';
 import lockIMG from './icons/lock.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useUser } from './userContext';
 
 
 function App() {
 
-  // declaration of all our variables
+  // Getting the user from context
+  const { user, setUser } = useUser();
 
-  // Getting the params
-  const {user} = useParams();  
+
+  console.log(user);   // This should log the user object
+
+
+  
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
   const [label, setLabel] = useState("");  
@@ -31,6 +39,7 @@ function App() {
   const [userScroll, setUserScroll] = useState(false);
   const [life, setLife] = useState(0);
   const [asked, setAsked] = useState(false);
+  const navigate = useNavigate();
 
   const dropDownOptions = [
     { id: 1, label: 'BARD (PALM)', imageUrl: lockIMG },
@@ -191,7 +200,6 @@ function App() {
   // a use effect method to change the text after writing
   const handleTextChange = (e) => {
     setInputText(e.target.value);
-    console.log(user);
   };
 
   // Handeling rating and opinion mouse events 
@@ -278,9 +286,27 @@ function App() {
     };
   }, [userScroll]);
  
-  return (
+  // logout
+  const logout = () => {               
+    signOut(auth).then(() => {
+    // Sign-out successful.
+        setUser(null);
+        navigate("/login");
+        console.log("Signed out successfully")
+    }).catch((error) => {
+    // An error happened.
+    });
+  }
 
+
+  return (
+ 
     <>
+     <button className="logout-button" onClick={logout}>
+            Logout
+            <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
+      </button>
+
       { asked === false ? (
 
         // means that the user hasn't entered his opinion yet, so we show to him the opinion page
@@ -290,7 +316,10 @@ function App() {
           {/* this is the logo  */}
     
           <img className="logo" src={logoIMG} alt="Image" />
-    
+
+          <p className="header">
+            Hello {user.email}!
+          </p>  
 
           {/*  this is the input section where we in write our information  */}
     
@@ -373,6 +402,10 @@ function App() {
         {/* this is the logo  */}
   
         <img className="logo" src={logoIMG} alt="Image" />
+
+        <p className="header">
+            Hello {user.email}!
+        </p>  
         
         {/*  this is the input section where we in write our information  */}
   

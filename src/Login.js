@@ -12,17 +12,18 @@ import phoneIMG from './icons/telephone.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useUser } from './userContext';
 
 
 function Login() {
 
   // declaration of all our variables
 
+  const { setUser } = useUser();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
-  const [result, setResult] = useState("");  
   const [loginPage, setLoginPage ] = useState(true);  
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -169,27 +170,17 @@ function Login() {
       });
   }
 
-  const logout = () => {               
-    signOut(auth).then(() => {
-    // Sign-out successful.
-        navigate("/login");
-        console.log("Signed out successfully")
-    }).catch((error) => {
-    // An error happened.
-    });
-  }
-
-  // get the current signed in user 
+  // get the current signed in user, and going to the next page
   useEffect(()=>{
     onAuthStateChanged(auth, (User) => {
         if (User) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           
-          console.log("uid1", User.uid)
+          setUser(User);
 
           setTimeout(() => {
-            nextPage(User.uid)
+            nextPage();
           }, 2000);
 
         } else {
@@ -197,11 +188,10 @@ function Login() {
           console.log("user is logged out")
         }
       });
-     
   }, [])
 
-  const nextPage = (id) => {
-    navigate(`/home/${id}`)
+  const nextPage = () => {
+    navigate(`/home`)
   }
  
 

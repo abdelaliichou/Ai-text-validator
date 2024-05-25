@@ -43,7 +43,6 @@
 .input-section {
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
   align-items: center;
   justify-content: space-between;
 }
@@ -56,6 +55,15 @@
   padding: 20px;
   margin-bottom: 300px;
   width: 50vw;
+}
+
+.header{
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: left;
+  color: #222222;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
 .text-input {
@@ -108,7 +116,38 @@ input::placeholder {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.logout-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: #ffe1e1;
+  color: rgb(255, 0, 0);
+  border: 3px solid #ffe1e1;
+  border-radius: 12px;
+  height: 50px;
+  margin: 35px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;  
+  right: 0; 
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+}
 
+.logout-button:hover {
+  background-color: white;
+  border: 3px solid rgb(255, 0, 0);
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
 
 
@@ -392,7 +431,13 @@ a:active {
   }
 }
 
-
+.logout-icon {
+  width: 26px; 
+  height: 26px; 
+  align-self: center;
+  margin-left: 5px;
+  margin-right: 0px;
+}
 
 
 
