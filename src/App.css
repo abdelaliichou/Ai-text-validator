@@ -41,6 +41,7 @@
 }
 
 .input-section {
+  margin-top: 35px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,16 +56,6 @@
   padding: 20px;
   margin-bottom: 250px;
   width: 50vw;
-}
-
-.header{
-  font-size: 1.6rem;
-  font-weight: 600;
-  text-align: left;
-  font-family: 'Poppins', sans-serif;
-  color: #222222;
-  margin-top: 50px;
-  margin-bottom: 20px;
 }
 
 .text-input {
@@ -163,7 +154,47 @@ input::placeholder {
   margin-right: 0px;
 }
 
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+  background-color: #e4e7ff;
+  color: #0F1F7D;
+  border: 3px solid #e4e7ff;
+  border-radius: 12px;
+  height: 50px;
+  font-family: 'Poppins', sans-serif;
+  margin: 35px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;  
+  left: 0; 
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+}
 
+.user:hover {
+  background-color: white;
+  border: 3px solid #0F1F7D;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.user:active {
+  transform: translateY(2px);
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.user-icon {
+  width: 26px; 
+  height: 26px; 
+  align-self: center;
+  margin-left: 0px;
+  margin-right: 5px;
+}
 
 
 /* /////////////////////////////////////////// Alert mesages //////////////////////////////////////////////// */ 

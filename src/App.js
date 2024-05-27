@@ -6,6 +6,7 @@ import { auth } from './firebase';
 import axios from 'axios';
 import logoutIMG from './icons/logout.svg';
 import logoIMG from './icons/HeReFanMi.png';
+import userIMG from './icons/user.png';
 import lockIMG from './icons/lock.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -317,6 +318,11 @@ function App() {
             <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
       </button>
 
+      <button className="user" onClick={logout}>
+            <img src={userIMG} alt="Google Logo" className="user-icon" />
+            {user?.email}
+      </button>
+
       { asked === false ? (
 
         // means that the user hasn't entered his opinion yet, so we show to him the opinion page
@@ -326,10 +332,6 @@ function App() {
           {/* this is the logo  */}
     
           <img className="logo" src={logoIMG} alt="Image" />
-
-          <p className="header">
-            Hello {user?.email}
-          </p>  
 
           {/*  this is the input section where we in write our information  */}
     
@@ -411,11 +413,7 @@ function App() {
 
         {/* this is the logo  */}
   
-        <img className="logo" src={logoIMG} alt="Image" />
-
-        <p className="header">
-            Hello {user.email}
-        </p>  
+        <img className="logo" src={logoIMG} alt="Image" /> 
         
         {/*  this is the input section where we in write our information  */}
   
@@ -617,7 +615,7 @@ function App() {
             {/* Modal for displaying the red alert message */}
             
             <div className="wrong">
-              Please try to ask something related to to medical field !
+              Please try to ask something related to medical field !
             </div>
   
           </>
