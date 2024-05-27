@@ -71,16 +71,17 @@
   width: 456px; 
   height: 100px;
   border-radius: 12px;
+  background-color: #fcfcfc;
   font-weight: 500;
   color: #272727;
   font-size: 1.2rem;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-  border: 3px solid #e9e9e9;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f5f5f5;
 }
 
 .text-input:focus {
-  border-color: #0F1F7D; /* Change this to your desired color */
-  outline: none; /* Removes the default focus outline */
+  border-color: #f5f5f5; 
+  outline: none;
 }
 
 input::placeholder {
@@ -295,7 +296,7 @@ ul.dropdown-menu {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   align-items: center;
-  box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
   /* border: 1px solid #e9e9e9;   */
   border-radius: 12px;
   padding-left: 30px;
@@ -313,7 +314,7 @@ ul.dropdown-menu {
   margin-bottom: 10px;
   margin-top:20px;
   position: static;
-  width: 412px;
+  width: 417px;
   height: 100px;
   bottom: 0;
   text-align: center;
@@ -321,8 +322,8 @@ ul.dropdown-menu {
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   align-items: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 3px solid #e9e9e9;  
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+  border: 0px solid #e9e9e9;  
   border-radius: 12px;
   padding-left: 30px;
   padding-right: 30px;
@@ -553,11 +554,12 @@ a:active {
     width: 357px;
     height: 80px;
     border-radius: 12px;
+    background-color: #fcfcfc;
     font-weight: 500;
     color: #363636;
     font-size: 1.2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 3px solid #e9e9e9;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fcfcfc;
   }
 
   .analyze-button {
@@ -619,7 +621,7 @@ a:active {
   
   .response-section{
     background-color: #ffffff;
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
     border: 1px solid #e9e9e9;        
     border-radius: 12px;
     padding: 20px;
@@ -639,7 +641,7 @@ a:active {
     background-color: rgba(255, 255, 255, 0.349);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
     /* border: 1px solid #e9e9e9;         */
     border-radius: 12px;
     padding-left: 30px;
@@ -664,8 +666,8 @@ a:active {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     align-items: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 3px solid #e9e9e9;  
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+    border: 0px solid #e9e9e9;  
     border-radius: 12px;
     padding-left: 30px;
     padding-right: 30px;
@@ -745,15 +747,16 @@ a:active {
     height: 60px;
     border-radius: 12px;
     font-weight: 500;
+    background-color: #fcfcfc;
     color: #363636;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 3px solid #e9e9e9;
+    font-size: 1.2rem;        
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fcfcfc;
   }
 
   .response-section{
     background-color: #ffffff;
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
     border: 1px solid #e9e9e9;        
     border-radius: 12px;
     padding: 20px;
@@ -773,7 +776,7 @@ a:active {
     background-color: rgba(255, 255, 255, 0.349);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
     /* border: 1px solid #e9e9e9;         */
     border-radius: 12px;
     padding-left: 30px;
@@ -791,7 +794,7 @@ a:active {
     margin-bottom: 10px;
     margin-top:20px;
     position: static;
-    width: 262px;
+    width: 268px;
     height: 100px;
     bottom: 0;
     text-align: center;
@@ -799,8 +802,8 @@ a:active {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     align-items: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border: 3px solid #e9e9e9;  
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    border: 0px solid #e9e9e9;  
     border-radius: 12px;
     padding-left: 30px;
     padding-right: 30px;

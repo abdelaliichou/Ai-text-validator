@@ -18,7 +18,7 @@ function App() {
   const { user, setUser } = useUser();
 
 
-  console.log(user);   // This should log the user object
+  console.log("Home page user => ",user);   // This should log the user object
 
 
   
