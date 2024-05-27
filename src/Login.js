@@ -43,7 +43,13 @@ function Login() {
 
   const handleEnterpress = (e) => {
     if (e.key === 'Enter') {
-      // Call your function here
+      if(loginPage){
+        
+        verifyLogin();
+        return;
+      }
+
+      verifySignup();
 
     }
   };
