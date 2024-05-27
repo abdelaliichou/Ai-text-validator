@@ -17,7 +17,6 @@
   box-shadow: 0 5px 50px rgba(0, 0, 0, 0.1);
   border: 3px solid white;
   justify-content: center;
-  font-family: 'Open Sans', sans-serif;
   text-align: center;
   padding: 20px; 
   box-sizing: border-box;
@@ -50,16 +49,19 @@
 .text {
   margin-top: 20px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   align-self: flex-start;
+  font-family: 'Poppins', sans-serif;
   margin-bottom: 8px;
   color: #222222;
 }
 
 .text2 {
   margin-top: 20px;
+  margin-bottom: 0px;
   font-size: 1rem;
-  font-weight: bold;  
+  font-weight: 600;  
+  font-family: 'Poppins', sans-serif;
   align-self: center;
   color: #8b8b8b;
 }
@@ -69,16 +71,18 @@
   margin-right: 15px;
   margin-top: 0px;
   margin-bottom: 0px;
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  font-weight: bold;  
+  font-weight: 600;  
   align-self: center;
   color: #797979;
 }
 
 .text4 {
   margin: 0px;
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  font-weight: bold;  
+  font-weight: 600;  
   align-self: center;
   color: #292929;
 }
@@ -97,7 +101,8 @@
   border-radius: 8px;
   font-weight: 500;
   color: #272727;
-  font-size: 1.05rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
   border: 2px solid white;
 }
@@ -120,12 +125,13 @@
   width: 478px;
   height: 54px;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
   margin-bottom: 10px;
   margin-top: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
 }
 
 .google-button {
@@ -139,7 +145,7 @@
   flex-grow: 1;
   height: 54px;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
   margin-bottom: 10px;
@@ -253,17 +259,19 @@
   
   .text {
     margin-top: 15px;
-    font-size: 0.9rem;
-    font-weight: bold;
+    font-size: 0.95rem;
+    font-weight: 600;
     align-self: flex-start;
     margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
     color: #222222;
   }
   
   .text2 {
     margin-top: 15px;
     font-size: 0.9rem;
-    font-weight: bold;  
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;  
     align-self: center;
     color: #8b8b8b;
   }
@@ -274,7 +282,8 @@
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 0.9rem;
-    font-weight: bold;  
+    font-weight: 600;  
+    font-family: 'Poppins', sans-serif;
     align-self: center;
     color: #797979;
   }
@@ -282,7 +291,8 @@
   .text4 {
     margin: 0px;
     font-size: 0.9rem;
-    font-weight: bold;  
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;  
     align-self: center;
     color: #292929;
   }
@@ -299,6 +309,7 @@
     padding: 15px;
     width: 380px; 
     border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     color: #272727;
     font-size: 0.9rem;
@@ -315,11 +326,12 @@
     height: 48px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
     margin-bottom: 10px;
     margin-top: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   }
   
   .google-button {
@@ -405,6 +417,177 @@
 
 }
 
+@media (max-height: 600px) {
+  
+  .logo2{
+    height: 70px;
+    width: 70px;
+    padding: 10px;
+    position: static;
+    opacity: 0; /* Set initial opacity to 0 for fade-in animation */
+    animation: fadeIn 0.5s forwards; /* Apply fade-in animation */
+  }
+  
+  .text {
+    margin-top: 13px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    align-self: flex-start;
+    margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #222222;
+  }
+  
+  .text2 {
+    margin-top: 13px;
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;  
+    align-self: center;
+    color: #8b8b8b;
+  }
+  
+  .text3 {
+    margin-left: 13px;
+    margin-right: 13px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 0.8rem;
+    font-weight: 600;  
+    font-family: 'Poppins', sans-serif;
+    align-self: center;
+    color: #797979;
+  }
+  
+  .text4 {
+    margin: 0px;
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;  
+    align-self: center;
+    color: #292929;
+  }
+  
+  .input-section2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .text-input2 {
+    padding: 15px;
+    width: 300px; 
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #272727;
+    font-size: 0.85rem;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid white;
+  }
+  
+  .login-button {
+    background-color: #0F1F7D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 334px;
+    height: 48px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .google-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #9b9b9b;
+    border: 2px solid rgb(236, 236, 236)  ;
+    border-radius: 12px;
+    flex-grow: 1;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 8px;
+  }
+  
+  .loading-indicator {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #0F1F7D; /* Change color as needed */
+    animation: bounce 1s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .separate-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 13px;
+    margin-top: 13px;
+  }
+  
+  .separator{
+    height: 2px;
+    width: 120px;
+    background-color: #d1d1d1;
+  } 
+  
+  .space{
+    flex-grow: 1;
+  }
+  
+  .auth-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 310px;
+  }
+  
+  .google-icon {
+    width: 20px; 
+    height: 20px; 
+    align-self: center;
+  }
+  
+  .apple-icon {
+    width: 24px; 
+    height: 23px; 
+    align-self: center;
+    margin-bottom: 4px;
+  }
+  
+  .fb-icon {
+    width: 23px; 
+    height: 23px; 
+    align-self: center;
+  }
+
+}
+
 
 @media (max-width: 550px) {
     
@@ -423,8 +606,9 @@
     width: 300px; 
     border-radius: 8px;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
     color: #272727;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
     border: 2px solid white;
   }
@@ -438,11 +622,11 @@
     height: 48px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
     margin-bottom: 10px;
     margin-top: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   }
   
   .google-button {
@@ -460,6 +644,47 @@
     font-weight: bold;
     text-decoration: none;
     margin-bottom: 10px;
+  }
+
+  .text {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    align-self: flex-start;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 8px;
+    color: #222222;
+  }
+  
+  .text2 {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 0.85rem;
+    font-weight: 600;  
+    font-family: 'Poppins', sans-serif;
+    align-self: center;
+    color: #8b8b8b;
+  }
+  
+  .text3 {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;  
+    align-self: center;
+    color: #797979;
+  }
+  
+  .text4 {
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;  
+    align-self: center;
+    color: #292929;
   }
   
   .loading-indicator {
@@ -546,7 +771,8 @@
     border-radius: 8px;
     font-weight: 500;
     color: #272727;
-    font-size: 0.9rem;
+    font-size: 0.80rem;
+    font-family: 'Poppins', sans-serif;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
     border: 2px solid white;
   }
@@ -560,11 +786,12 @@
     height: 48px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     margin-bottom: 10px;
     margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   }
   
   .google-button {
@@ -582,6 +809,47 @@
     font-weight: bold;
     text-decoration: none;
     margin-bottom: 10px;
+  }
+
+  .text {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    align-self: flex-start;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 8px;
+    color: #222222;
+  }
+  
+  .text2 {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 0.8rem;
+    font-weight: 600;  
+    font-family: 'Poppins', sans-serif;
+    align-self: center;
+    color: #8b8b8b;
+  }
+  
+  .text3 {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;  
+    align-self: center;
+    color: #797979;
+  }
+  
+  .text4 {
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;  
+    align-self: center;
+    color: #292929;
   }
   
   .loading-indicator {
@@ -663,18 +931,21 @@
   
     
   .text {
-    margin-top: 15px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
     align-self: flex-start;
-    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 5px;
     color: #222222;
   }
   
   .text2 {
-    margin-top: 15px;
-    font-size: 0.8rem;
-    font-weight: bold;  
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 0.75rem;
+    font-weight: 600;  
+    font-family: 'Poppins', sans-serif;
     align-self: center;
     color: #8b8b8b;
   }
@@ -684,16 +955,18 @@
     margin-right: 15px;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 0.8rem;
-    font-weight: bold;  
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;  
     align-self: center;
     color: #797979;
   }
   
   .text4 {
     margin: 0px;
-    font-size: 0.8rem;
-    font-weight: bold;  
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;  
     align-self: center;
     color: #292929;
   }
@@ -701,10 +974,11 @@
   .text-input2 {
     padding: 15px;
     width: 210px; 
+    font-family: 'Poppins', sans-serif;
     border-radius: 8px;
     font-weight: 500;
     color: #272727;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
     border: 2px solid white;
   }
@@ -717,12 +991,13 @@
     width: 248px;
     height: 48px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     margin-bottom: 10px;
     margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
   }
   
   .google-button {

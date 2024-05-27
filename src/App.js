@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
-import { signOut, onAuthStateChanged  } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 import { auth } from './firebase';
 import axios from 'axios';
 import logoutIMG from './icons/logout.svg';
@@ -70,6 +70,7 @@ function App() {
     try {
       setLoading(true); // Set loading state to true when starting the request
       const datum = {
+        user : user?.uid,
         data : inputText,
         opinion : ratingOpinion
       }
@@ -122,6 +123,7 @@ function App() {
 
     try {
       const datum = {
+        user : user?.uid,
         rating : rating,
         reference : reference
       }
@@ -299,10 +301,9 @@ function App() {
   }
 
   // check if the user is null, we logged him out directly
-   // function to know if the user has scrolled all the way down to the bottom of the response
    useEffect(() => {
     if (user === null) {
-      console.log("User is null so we logged you iut directy !");
+      console.log("User is null so we logged you out directy !");
       logout();
     }
   }, []);
