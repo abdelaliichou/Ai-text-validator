@@ -130,7 +130,7 @@ input::placeholder {
   height: 50px;
   margin: 35px;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 0;  
   right: 0; 
   font-size: 1.2rem;
@@ -149,6 +149,15 @@ input::placeholder {
   transform: translateY(2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.logout-icon {
+  width: 26px; 
+  height: 26px; 
+  align-self: center;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+
 
 
 
@@ -432,15 +441,6 @@ a:active {
   }
 }
 
-.logout-icon {
-  width: 26px; 
-  height: 26px; 
-  align-self: center;
-  margin-left: 5px;
-  margin-right: 0px;
-}
-
-
 
 /* /////////////////////////////////////////// Responsivite //////////////////////////////////////////////// */
 
@@ -488,6 +488,28 @@ a:active {
     z-index: 1;
   }
 
+  .logout-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #ffe1e1;
+    color: rgb(255, 0, 0);
+    border: 3px solid #ffe1e1;
+    border-radius: 12px;
+    height: 50px;
+    margin: 35px;
+    cursor: pointer;
+    position: fixed;
+    top: 0;  
+    right: 0; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  }
+
 }
 
 @media (max-width: 900px) {
@@ -518,13 +540,45 @@ a:active {
 
 @media (max-width: 730px) {
   .logo{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     padding: 25px;
     position: static; /* Reset position to static */
     opacity: 0; /* Set initial opacity to 0 for fade-in animation */
     animation: fadeIn 0.5s forwards; /* Apply fade-in animation */
   }
+
+  .logout-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #ffe1e1;
+    color: rgb(255, 0, 0);
+    border: 3px solid #ffe1e1;
+    border-radius: 8px;
+    height: 40px;
+    margin: 30px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;  
+    right: 0; 
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .logout-icon {
+    width: 23px; 
+    height: 23px; 
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 0px;
+  }
+
 }
 
 @media (max-width: 630px) {
@@ -542,6 +596,47 @@ a:active {
 
 @media (max-width: 500px) {
 
+  .logo{
+    height: 150px;
+    width: 150px;
+    padding: 25px;
+    position: static; /* Reset position to static */
+    opacity: 0; /* Set initial opacity to 0 for fade-in animation */
+    animation: fadeIn 0.5s forwards; /* Apply fade-in animation */
+    margin-top: 70px;
+  }
+
+  .logout-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #ffe1e1;
+    color: rgb(255, 0, 0);
+    border: 3px solid #ffe1e1;
+    border-radius: 8px;
+    height: 40px;
+    margin: 30px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;  
+    right: 0; 
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .logout-icon {
+    width: 23px; 
+    height: 23px; 
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 0px;
+  }
+  
   .response-text {
     font-size: 1.2rem;
     font-weight: normal;

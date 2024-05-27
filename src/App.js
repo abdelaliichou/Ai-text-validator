@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { signOut, onAuthStateChanged  } from 'firebase/auth';
 import { auth } from './firebase';
 import axios from 'axios';
-import logoutIMG from './icons/logout.png';
+import logoutIMG from './icons/logout.svg';
 import logoIMG from './icons/HeReFanMi.png';
 import lockIMG from './icons/lock.png';
 import { ToastContainer, toast } from 'react-toastify';
