@@ -328,7 +328,7 @@ function App() {
           <img className="logo" src={logoIMG} alt="Image" />
 
           <p className="header">
-            Hello {user?.email}!
+            Hello {user?.email}
           </p>  
 
           {/*  this is the input section where we in write our information  */}
@@ -414,7 +414,7 @@ function App() {
         <img className="logo" src={logoIMG} alt="Image" />
 
         <p className="header">
-            Hello {user.email}!
+            Hello {user.email}
         </p>  
         
         {/*  this is the input section where we in write our information  */}
