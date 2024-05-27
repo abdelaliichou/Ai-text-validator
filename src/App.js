@@ -298,6 +298,15 @@ function App() {
     });
   }
 
+  // check if the user is null, we logged him out directly
+   // function to know if the user has scrolled all the way down to the bottom of the response
+   useEffect(() => {
+    if (user === null) {
+      console.log("User is null so we logged you iut directy !");
+      logout();
+    }
+  }, []);
+
 
   return (
  
@@ -318,7 +327,7 @@ function App() {
           <img className="logo" src={logoIMG} alt="Image" />
 
           <p className="header">
-            Hello {user.email}!
+            Hello {user?.email}!
           </p>  
 
           {/*  this is the input section where we in write our information  */}

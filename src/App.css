@@ -8,8 +8,8 @@
 }
 
 .logo{
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
   padding: 35px;
   position: absolute;
   top: 0;
@@ -220,7 +220,7 @@ input::placeholder {
   font-size: 1.2rem;
   font-weight: bold;
   margin: 35px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
   user-select: none;
 }
 
