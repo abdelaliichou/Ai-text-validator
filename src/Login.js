@@ -64,14 +64,14 @@ function Login() {
   }
 
   const verifyLogin = async () => {
-    if (email === "") {
+    if (email.trim() === "") {
       toast.error("Please enter your email", {
         position: "top-center"
       });
       return;
     }
 
-    if (password === "") {
+    if (password.trim() === "") {
       toast.error("Please enter your password", {
         position: "top-center"
       });
@@ -82,14 +82,14 @@ function Login() {
   }
 
   const verifySignup = async () => {
-    if (email === "") {
+    if (email.trim() === "") {
       toast.error("Please enter your email", {
         position: "top-center"
       });
       return;
     }
 
-    if (password === "") {
+    if (password.trim() === "") {
       toast.error("Please enter your password", {
         position: "top-center"
       });
@@ -103,7 +103,7 @@ function Login() {
       return;
     }
 
-    if (confirmPassword === "") {
+    if (confirmPassword.trim() === "") {
       toast.error("Please confirm your password", {
         position: "top-center"
       });
@@ -125,7 +125,7 @@ function Login() {
     // e.preventDefault();
     setLoading(true);
 
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email.trim(), password.trim())
     .then((userCredential) => {
 
         // Signed in
@@ -153,7 +153,7 @@ function Login() {
     // e.preventDefault()
     setLoading(true);
 
-    await createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email.trim(), password.trim())
       .then((userCredential) => {
 
           // Signed in

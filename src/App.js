@@ -33,6 +33,7 @@ function App() {
   const [hoverRating, setHoverRating] = useState(null);
   const [hoverOpinion, setHoverOpinion] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [logged, setLogged] = useState(false);
   const [selectedItem, setSelectedItem] = useState(
     { id: 4, label: 'GPT3.5', imageUrl: lockIMG }
   );
@@ -301,6 +302,16 @@ function App() {
     });
   }
 
+
+  const showLogout = () => {
+    if(logged){
+      setLogged(false);
+      return;
+    }
+
+    setLogged(true);
+  }
+
   // check if the user is null, we logged him out directly
    useEffect(() => {
     if (user === null) {
@@ -313,15 +324,22 @@ function App() {
   return (
  
     <>
-     <button className="logout-button" onClick={logout}>
-            Logout
-            <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
-      </button>
 
-      <button className="user" onClick={logout}>
-            <img src={userIMG} alt="Google Logo" className="user-icon" />
-            {user?.email}
-      </button>
+      <div className="input-section">
+        {
+          (logged && (
+              <button className="logout-button" onClick={logout}>
+                  Logout
+                  <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
+              </button>
+          ))
+        }
+
+        <button className="user" onClick={showLogout}>
+              <img src={userIMG} alt="Google Logo" className="user-icon" />
+              {user?.email}
+        </button>
+      </div>
 
       { asked === false ? (
 
@@ -367,37 +385,6 @@ function App() {
               ))}
             </div>
           </div>}
-    
-           {/*  this is the drop down section to select the AI model  */}
-    
-          <div className="dropdown">
-            <div className="dropdown-header" onClick={toggleDropdown}>
-              {selectedItem ? selectedItem.label : "GPT3.5"}
-              <span className="caret"></span>
-            </div>
-            {isOpen && (
-              <ul className="dropdown-menu">
-                {dropDownOptions.map(option => (
-                  <li key={option.id} onClick={() => handleDropItemClick(option)}>
-                    {selectedItem.label === option.label ? 
-                    // means that we selected this option, so we dont show the lock image
-                    (
-                      <>
-                        {option.label}
-                      </>
-                    ): 
-                    // means that we havn't select this option, so we show the lock image
-                    (
-                      <>
-                        <img src={option.imageUrl} alt={option.label} />
-                        {option.label}
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
 
         </div>
     
