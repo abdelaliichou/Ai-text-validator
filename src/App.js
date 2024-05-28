@@ -41,6 +41,7 @@ function App() {
   const [userScroll, setUserScroll] = useState(false);
   const [life, setLife] = useState(0);
   const [asked, setAsked] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
 
   const dropDownOptions = [
@@ -302,7 +303,6 @@ function App() {
     });
   }
 
-
   const showLogout = () => {
     if(logged){
       setLogged(false);
@@ -312,34 +312,36 @@ function App() {
     setLogged(true);
   }
 
+  const showMail = (str) => {
+    return str?.slice(0, str.length-15) + '...';
+  }
+
   // check if the user is null, we logged him out directly
-   useEffect(() => {
+  useEffect(() => {
     if (user === null) {
       console.log("User is null so we logged you out directy !");
       logout();
     }
   }, []);
 
+  // whenever the width of the screen changes, we change the variable wich make us able to change the drop down from top left absolute parent to our page-container flex under the input text  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   return (
  
     <>
-
-      <div className="input-section">
-        {
-          (logged && (
-              <button className="logout-button" onClick={logout}>
-                  Logout
-                  <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
-              </button>
-          ))
-        }
-
-        <button className="user" onClick={showLogout}>
-              <img src={userIMG} alt="Google Logo" className="user-icon" />
-              {user?.email}
-        </button>
-      </div>
 
       { asked === false ? (
 
@@ -354,6 +356,7 @@ function App() {
           {/*  this is the input section where we in write our information  */}
     
           <div className="input-section">
+
             <input
               type="text"
               className="text-input"
@@ -362,31 +365,52 @@ function App() {
               value={inputText}
               onChange={handleTextChange}
             />
-    
-          
-          {/* this is the rating place */}
 
-          {(inputText !== "") && 
-          <div className="opinion-page"> 
-            <p className="rating-text">
-            How much is the trustworthiness of the prompt you provided ?
-            </p>
-            <div className="rating-container">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <span
-                  key={value}
-                  className={value <= (hoverOpinion || ratingOpinion) ? "active" : ""}
-                  onClick={() => handleOpinionClick(value)}
-                  onMouseEnter={() => handleMouseOpinionEnter(value)}
-                  onMouseLeave={handleMouseOpinionLeave}
-                >
-                  &#9733;
-                </span>
-              ))}
+
+            {/* this is the profile and logout buttons    */}
+
+
+            <div className="profile-section-notasked">
+
+              <button className="user" onClick={showLogout}>
+                  <img src={userIMG} alt="Google Logo" className="user-icon" />
+                  {showMail(user?.email)}
+              </button>
+
+              {
+                (logged && (
+                    <button className="logout-button" onClick={logout}>
+                      <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
+                      {/* Logout */}
+                    </button>
+                ))
+              }
+              
             </div>
-          </div>}
+              
+            {/* this is the rating place */}
 
-        </div>
+            {(inputText !== "") && 
+            <div className="opinion-page"> 
+              <p className="rating-text">
+              How much is the trustworthiness of the prompt you provided ?
+              </p>
+              <div className="rating-container">
+                {[1, 2, 3, 4, 5].map((value) => (
+                  <span
+                    key={value}
+                    className={value <= (hoverOpinion || ratingOpinion) ? "active" : ""}
+                    onClick={() => handleOpinionClick(value)}
+                    onMouseEnter={() => handleMouseOpinionEnter(value)}
+                    onMouseLeave={handleMouseOpinionLeave}
+                  >
+                    &#9733;
+                  </span>
+                ))}
+              </div>
+            </div>}
+
+          </div>
     
           <ToastContainer />
     
@@ -398,200 +422,278 @@ function App() {
         
         <div className="page-container">
 
-        {/* this is the logo  */}
-  
-        <img className="logo" src={logoIMG} alt="Image" /> 
-        
-        {/*  this is the input section where we in write our information  */}
-  
-        <div className="input-section">
-          <input
-            type="text"
-            className="text-input"
-            placeholder="How i can help you today ?"
-            onKeyDown={handleEnterpress}
-            value={inputText}
-            onChange={handleTextChange}
-          />
-  
-        {/*  this is the drop down section to select the AI model  */}
-  
-          <div className="dropdown">
-            <div className="dropdown-header" onClick={toggleDropdown}>
-              {selectedItem ? selectedItem.label : "GPT3.5"}
-              <span className="caret"></span>
-            </div>
-            {isOpen && (
-              <ul className="dropdown-menu">
-                {dropDownOptions.map(option => (
-                  <li key={option.id} onClick={() => handleDropItemClick(option)}>
-                    {selectedItem.label === option.label ? 
-                    // means that we selected this option, so we dont show the lock image
-                    (
-                      <>
-                        {option.label}
-                      </>
-                    ): 
-                    // means that we havn't select this option, so we show the lock image
-                    (
-                      <>
-                        <img src={option.imageUrl} alt={option.label} />
-                        {option.label}
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          {/*  this is the button to click to check the infomation worth  */}
+          {/* this is the logo  */}
+    
+          <img className="logo" src={logoIMG} alt="Image" /> 
           
-          <button className="analyze-button" onClick={handleAPI}>
-            Check Reliability
-          </button>
-        </div>
+          {/*  this is the input section where we in write our information  */}
+    
+          <div className="input-section">
+
+            <input
+              type="text"
+              className="text-input"
+              placeholder="How i can help you today ?"
+              onKeyDown={handleEnterpress}
+              value={inputText}
+              onChange={handleTextChange}
+            />
+    
+            {/* this is the drop down section to select the AI model + the logout and profile buttons */}
+            {/* this windowWidth variable is helping us to change the css of the drop down from absolute to relative, keeping the rest absolut */}
+
+            { windowWidth > 1100 ? (
+
+                <div className="profile-section">
+
+                  <div className="profile-section-row">
+
+                    <button className="user" onClick={showLogout}>
+                          <img src={userIMG} alt="Google Logo" className="user-icon" />
+                          {showMail(user?.email)}
+                    </button>
+
+                    {
+                      (logged && (
+                          <button className="logout-button" onClick={logout}>
+                              <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
+                              {/* Logout */}
+                          </button>
+                      ))
+                    }
+
+                  </div>
+
+                  <div className="dropdown">
+                    <div className="dropdown-header" onClick={toggleDropdown}>
+                      {selectedItem ? selectedItem.label : "GPT3.5"}
+                      <span className="caret"></span>
+                    </div>
+                    {isOpen && (
+                      <ul className="dropdown-menu">
+                        {dropDownOptions.map(option => (
+                          <li key={option.id} onClick={() => handleDropItemClick(option)}>
+                            {selectedItem.label === option.label ? 
+                            // means that we selected this option, so we dont show the lock image
+                            (
+                              <>
+                                {option.label}
+                              </>
+                            ): 
+                            // means that we havn't select this option, so we show the lock image
+                            (
+                              <>
+                                <img src={option.imageUrl} alt={option.label} />
+                                {option.label}
+                              </>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                </div>        
+
+            ) : (
+
+                <>
+                  <div className="profile-section-notasked">
+
+                    <button className="user" onClick={showLogout}>
+                          <img src={userIMG} alt="Google Logo" className="user-icon" />
+                          {showMail(user?.email)}
+                    </button>
+
+                    {
+                      (logged && (
+                          <button className="logout-button" onClick={logout}>
+                              <img src={logoutIMG} alt="Google Logo" className="logout-icon" />
+                              {/* Logout */}
+                          </button>
+                      ))
+                    }
+
+                  </div>
+
+                  <div className="dropdown">
+                    <div className="dropdown-header" onClick={toggleDropdown}>
+                      {selectedItem ? selectedItem.label : "GPT3.5"}
+                      <span className="caret"></span>
+                    </div>
+                    {isOpen && (
+                      <ul className="dropdown-menu">
+                        {dropDownOptions.map(option => (
+                          <li key={option.id} onClick={() => handleDropItemClick(option)}>
+                            {selectedItem.label === option.label ? 
+                            // means that we selected this option, so we dont show the lock image
+                            (
+                              <>
+                                {option.label}
+                              </>
+                            ): 
+                            // means that we havn't select this option, so we show the lock image
+                            (
+                              <>
+                                <img src={option.imageUrl} alt={option.label} />
+                                {option.label}
+                              </>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </>
+
+            )}
+
+
+            {/*  this is the button to click to check the infomation worth  */}
+            
+            <button className="analyze-button" onClick={handleAPI}>
+              Check Reliability
+            </button>
+
+          </div>
   
         {/*  here is the logic of showing different componenets based on the "result" variable
         which is the response of our API */}
   
-        {loading ? ( 
+        {loading && ( 
           <div className="loading-indicator"></div> // Display loading indicator if loading state is true
-        ) : (
-          <></>
         )}
   
         {/* Display result, label, source, reference, etc. */}
   
-  
         {label === "trustworthy" ? (
+
           <>
   
-          <ToastContainer />
-  
-  
-          {/* Modal for displaying the green alert message */}
-  
-          <div className="trust">
-            Your information is trust worthy !
-          </div>
-  
-          <div className="response-section">
-            <p className="response-text">
-              {result}
-            </p>
-            <p className="response-text">
-              Reference : <br/> <a>{source}</a>
-            </p>
-          </div>
-  
-          {/* this is the rating place */}
-  
-          <div className="rating-page"> 
-            <p className="rating-text">
-              How much you trust our Model's generated response ?
-            </p>
-            <div className="rating-container">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <span
-                  key={value}
-                  className={value <= (hoverRating || rating) ? "active" : ""}
-                  onClick={() => handleRatingClick(value)}
-                  onMouseEnter={() => handleMouseEnter(value)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  &#9733;
-                </span>
-              ))}
-            </div>  
-          </div>
+            <ToastContainer />
+    
+            {/* Modal for displaying the green alert message */}
+    
+            <div className="trust">
+              Your information is trust worthy !
+            </div>
+    
+            <div className="response-section">
+              <p className="response-text">
+                {result}
+              </p>
+              <p className="response-text">
+                Reference : <br/> <a>{source}</a>
+              </p>
+            </div>
+    
+            {/* this is the rating place */}
+    
+            <div className="rating-page"> 
+              <p className="rating-text">
+                How much you trust our Model's generated response ?
+              </p>
+              <div className="rating-container">
+                {[1, 2, 3, 4, 5].map((value) => (
+                  <span
+                    key={value}
+                    className={value <= (hoverRating || rating) ? "active" : ""}
+                    onClick={() => handleRatingClick(value)}
+                    onMouseEnter={() => handleMouseEnter(value)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    &#9733;
+                  </span>
+                ))}
+              </div>  
+            </div>
   
           </>
         ) : label === "doubtful" ? (
           <>
   
-          <ToastContainer />
-  
-  
-          {/* Modal for yellow the red alert message */}
-  
-          <div className="doutable">
-            Your information is doutable !
-          </div>
-  
-          {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
-  
-          <div className="response-section">
-            <p className="response-text">
-              {result}
-            </p>
-          </div>
-  
-          {/* this is the rating place */}
-  
-          <div className="rating-page"> 
-            <p className="rating-text">
-              How much you trust our Model's generated response ?
-            </p>
-            <div className="rating-container">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <span
-                  key={value}
-                  className={value <= (hoverRating || rating) ? "active" : ""}
-                  onClick={() => handleRatingClick(value)}
-                  onMouseEnter={() => handleMouseEnter(value)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  &#9733;
-                </span>
-              ))}
-            </div> 
-          </div>
-  
+            <ToastContainer />
+    
+    
+            {/* Modal for yellow the red alert message */}
+    
+            <div className="doutable">
+              Your information is doutable !
+            </div>
+    
+            {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
+    
+            <div className="response-section">
+              <p className="response-text">
+                {result}
+              </p>
+            </div>
+    
+            {/* this is the rating place */}
+    
+            <div className="rating-page"> 
+              <p className="rating-text">
+                How much you trust our Model's generated response ?
+              </p>
+              <div className="rating-container">
+                {[1, 2, 3, 4, 5].map((value) => (
+                  <span
+                    key={value}
+                    className={value <= (hoverRating || rating) ? "active" : ""}
+                    onClick={() => handleRatingClick(value)}
+                    onMouseEnter={() => handleMouseEnter(value)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    &#9733;
+                  </span>
+                ))}
+              </div> 
+            </div>
+    
           </>
         ) : label === "fake" ? (
           <>
   
-          <ToastContainer />
-  
-  
-          {/* Modal for displaying the red alert message */}
-  
-          <div className="wrong">
-            Your information is fake !
-          </div>
-  
-          {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
-  
-          <div className="response-section">
-            <p className="response-text">
-              {result}
-            </p>
-            <p className="response-text">
-              Link to the reference : {source}
-            </p>
-          </div>
-  
-          {/* this is the rating place */}
-  
-          <div className="rating-page"> 
-            <p className="rating-text">
-              How much you trust our Model's generated response ?
-            </p>
-            <div className="rating-container">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <span
-                  key={value}
-                  className={value <= (hoverRating || rating) ? "active" : ""}
-                  onClick={() => handleRatingClick(value)}
-                  onMouseEnter={() => handleMouseEnter(value)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  &#9733;
-                </span>
-              ))}
-            </div>  
-          </div>
+            <ToastContainer />
+    
+    
+            {/* Modal for displaying the red alert message */}
+    
+            <div className="wrong">
+              Your information is fake !
+            </div>
+    
+            {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
+    
+            <div className="response-section">
+              <p className="response-text">
+                {result}
+              </p>
+              <p className="response-text">
+                Link to the reference : {source}
+              </p>
+            </div>
+    
+            {/* this is the rating place */}
+    
+            <div className="rating-page"> 
+              <p className="rating-text">
+                How much you trust our Model's generated response ?
+              </p>
+              <div className="rating-container">
+                {[1, 2, 3, 4, 5].map((value) => (
+                  <span
+                    key={value}
+                    className={value <= (hoverRating || rating) ? "active" : ""}
+                    onClick={() => handleRatingClick(value)}
+                    onMouseEnter={() => handleMouseEnter(value)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    &#9733;
+                  </span>
+                ))}
+              </div>  
+            </div>
   
           </>
         ) : result === "Please try to ask something related to to medical field... !" ? (
@@ -608,6 +710,7 @@ function App() {
           </>
         ) : (
           <>
+
             {/*  in this case, we havn't enter any info in the input text, so we show just a static text  */} 
 
             <ToastContainer />
