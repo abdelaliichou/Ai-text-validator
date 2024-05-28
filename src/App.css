@@ -733,7 +733,7 @@ a:active {
     right: 0; 
     top: 0; 
     padding-right: 20px;
-    padding-top: 20px;
+    padding-top: 22px;
     position: fixed;
   }
 
@@ -1064,8 +1064,8 @@ a:active {
     flex-direction: row;
     right: 0; 
     top: 0; 
-    padding-right: 18px;
-    padding-top: 18px;
+    padding-right: 15px;
+    padding-top: 20px;
     position: fixed;
   }
 
