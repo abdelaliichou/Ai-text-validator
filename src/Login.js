@@ -1,7 +1,7 @@
 import "./Login.css";
 import React, { useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged  } from 'firebase/auth';
-import { auth } from './firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { auth, GoogleProvider } from './firebase';
 import axios from 'axios';
 import logoIMG from './icons/HeReFanMi.png';
 import googleIMG from './icons/google.png';
@@ -61,6 +61,20 @@ function Login() {
     }
 
     setLoginPage(true);
+  }
+
+  const authGoogle = async () => {
+    try {
+      await signInWithPopup(auth, GoogleProvider);
+      toast.success("Logged in successfully!", {
+        position: "top-center"
+      });
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+      toast.error(error, {
+        position: "top-center"
+      });
+    }
   }
 
   const verifyLogin = async () => {
@@ -181,9 +195,9 @@ function Login() {
     onAuthStateChanged(auth, (User) => {
         if (User) {
           // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
           
           setUser(User);
+          console.log(User)
 
           setTimeout(() => {
             nextPage();
@@ -268,7 +282,7 @@ function Login() {
             </div>
 
             <div className="auth-container">
-              <button className="google-button" onClick={()=>{}}>
+              <button className="google-button" onClick={authGoogle}>
                   <img src={googleIMG} alt="Google Logo" className="google-icon" />
               </button>
 

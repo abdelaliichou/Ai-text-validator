@@ -321,7 +321,7 @@ function App() {
   }
 
   const showMail = (str) => {
-    return str?.slice(0, str.length-15) + '...';
+    return str?.slice(0, str.length-3) + '...';
   }
 
   // check if the user is null, we logged him out directly
