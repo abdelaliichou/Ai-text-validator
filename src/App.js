@@ -8,6 +8,10 @@ import logoutIMG from './icons/logout.svg';
 import logoIMG from './icons/HeReFanMi.png';
 import userIMG from './icons/user.png';
 import lockIMG from './icons/lock.png';
+import shareIMG from './icons/share.png';
+import rateIMG from './icons/jaime.svg';
+import copyIMG from './icons/copy.svg';
+import regenerateIMG from './icons/restart.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useUser } from './userContext';
@@ -19,7 +23,7 @@ function App() {
   const { user, setUser } = useUser();
 
 
-  console.log("Home page user => ",user);   // This should log the user object
+  // console.log("Home page user => ",user);   // This should log the user object
 
 
   
@@ -28,6 +32,7 @@ function App() {
   const [label, setLabel] = useState("");  
   const [source, setSrouce] = useState([]);  
   const [reference, setReference] = useState("");
+  const [news, setNews] = useState("");
   const [rating, setRating] = useState("0");
   const [ratingOpinion, setRatingOpinion] = useState("0");
   const [hoverRating, setHoverRating] = useState(null);
@@ -88,10 +93,12 @@ function App() {
       });
       console.log(response.data.data);
       console.log(response.data.key);  
+      console.log(response.data.news);
       console.log(response.data.label);
       console.log(response.data.source);    
 
       setResult(response.data.data);
+      setNews(response.data.news);
       setLabel(response.data.label);
       setSrouce(response.data.source);
       setReference(response.data.key);
@@ -566,7 +573,7 @@ function App() {
   
         {/* Display result, label, source, reference, etc. */}
   
-        {label === "trustworthy" ? (
+        {label === "Trustworthy" ? (
 
           <>
   
@@ -577,15 +584,30 @@ function App() {
             <div className="trust">
               Your information is trust worthy !
             </div>
-    
-            <div className="response-section">
-              <p className="response-text">
-                {result}
-              </p>
-              <p className="response-text">
-                Reference : <br/> <a>{source}</a>
-              </p>
+
+            <div className="response">
+
+              <div className="response-section">
+                <p className="response-text">
+                  {result}
+                </p>
+
+                { (source.length > 0) && (
+                  <p className="response-text">
+                    Reference : <br/> <a>{source}</a>
+                  </p>
+                )}  
+              </div>
+
+              <div className="response-options" >
+                <img className="options-icon" src={copyIMG} alt="copy" />
+                <img className="options-icon" src={regenerateIMG} alt="Regenerate" />
+                <img className="options-icon" src={rateIMG} alt="rate" />
+                <img className="options-icon" src={shareIMG} alt="share" />
+              </div>
+
             </div>
+
     
             {/* this is the rating place */}
     
@@ -609,7 +631,7 @@ function App() {
             </div>
   
           </>
-        ) : label === "doubtful" ? (
+        ) : label === "Doubtful" ? (
           <>
   
             <ToastContainer />
@@ -623,11 +645,23 @@ function App() {
     
             {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
     
-            <div className="response-section">
-              <p className="response-text">
-                {result}
-              </p>
+            <div className="response">
+
+              <div className="response-section">
+                <p className="response-text">
+                  {result}
+                </p>
+              </div>
+
+              <div className="response-options" >
+                <img className="options-icon" src={copyIMG} alt="copy" />
+                <img className="options-icon" src={regenerateIMG} alt="Regenerate" />
+                <img className="options-icon" src={rateIMG} alt="rate" />
+                <img className="options-icon" src={shareIMG} alt="share" />
+              </div>
+
             </div>
+
     
             {/* this is the rating place */}
     
@@ -651,7 +685,7 @@ function App() {
             </div>
     
           </>
-        ) : label === "fake" ? (
+        ) : label === "Fake" ? (
           <>
   
             <ToastContainer />
@@ -665,14 +699,31 @@ function App() {
     
             {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
     
-            <div className="response-section">
-              <p className="response-text">
-                {result}
-              </p>
-              <p className="response-text">
-                Link to the reference : {source}
-              </p>
+
+            <div className="response">
+
+              <div className="response-section">
+                <p className="response-text">
+                  {result}
+                </p>
+
+                { (source.length > 0) && (
+                  <p className="response-text">
+                    Reference : <br/> <a>{source}</a>
+                  </p>
+                )}         
+              </div>
+
+              <div className="response-options" >
+                <img className="options-icon" src={copyIMG} alt="copy" />
+                <img className="options-icon" src={regenerateIMG} alt="Regenerate" />
+                <img className="options-icon" src={rateIMG} alt="rate" />
+                <img className="options-icon" src={shareIMG} alt="share" />
+              </div>
+
             </div>
+
+            
     
             {/* this is the rating place */}
     
