@@ -43,6 +43,7 @@ function App() {
     { id: 4, label: 'GPT3.5', imageUrl: lockIMG }
   );
   const [loading, setLoading] = useState(false);
+  const [hoverStyle, setHoverStyle] = useState({ transform: 'scale(1)', transition: 'transform 0.3s ease' });
   const [userScroll, setUserScroll] = useState(false);
   const [life, setLife] = useState(0);
   const [asked, setAsked] = useState(false);
@@ -345,6 +346,36 @@ function App() {
     };
   }, []);
 
+  // response options functions
+  const optionRate = () => {
+    setHoverStyle({ transform: 'scale(1.09)', transition: 'transform 0.3s ease' });
+    setTimeout(() => {
+      setHoverStyle({ transform: 'scale(1)', transition: 'transform 0.3s ease' });
+    }, 500);  
+  }
+
+  const optionCopy = () => {
+    navigator.clipboard.writeText(result)
+      .then(() => {
+        toast.success("Text copied to clipboard!", {
+          position: "top-center"
+        });
+      })
+      .catch(err => {
+        toast.error(`Failed to copy text: ${err}`, {
+          position: "top-center"
+        });
+      });
+  }
+
+  const optionShare = () => {
+    const recipient = 'a.ichou@esi-sba.dz';
+    const subject =   `Hello from ${user?.email}`;
+    const body = 'This is a test email sent from a React app.';
+    const cc = 'cc@example.com';
+    const bcc = 'bcc@example.com';
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}&cc=${cc}&bcc=${bcc}`;
+  }
 
   return (
  
@@ -592,7 +623,7 @@ function App() {
                   {result}
                 </p>
 
-                { (source.length > 0) && (
+                {(source.length > 0) && (
                   <p className="response-text">
                     Reference : <br/> <a>{source}</a>
                   </p>
@@ -600,10 +631,10 @@ function App() {
               </div>
 
               <div className="response-options" >
-                <img className="options-icon" src={copyIMG} alt="copy" />
-                <img className="options-icon" src={regenerateIMG} alt="Regenerate" />
-                <img className="options-icon" src={rateIMG} alt="rate" />
-                <img className="options-icon" src={shareIMG} alt="share" />
+                <img className="options-icon" onClick={optionCopy} src={copyIMG} alt="copy" />
+                <img className="options-icon" onClick={handleAPI} src={regenerateIMG} alt="Regenerate" />
+                <img className="options-icon" onClick={optionRate} src={rateIMG} alt="rate" />
+                <img className="options-icon" onClick={optionShare} src={shareIMG} alt="share" />
               </div>
 
             </div>
@@ -611,7 +642,7 @@ function App() {
     
             {/* this is the rating place */}
     
-            <div className="rating-page"> 
+            <div className="rating-page" style={hoverStyle}> 
               <p className="rating-text">
                 How much you trust our Model's generated response ?
               </p>
@@ -654,10 +685,10 @@ function App() {
               </div>
 
               <div className="response-options" >
-                <img className="options-icon" src={copyIMG} alt="copy" />
-                <img className="options-icon" src={regenerateIMG} alt="Regenerate" />
-                <img className="options-icon" src={rateIMG} alt="rate" />
-                <img className="options-icon" src={shareIMG} alt="share" />
+                <img className="options-icon" onClick={optionCopy} src={copyIMG} alt="copy" />
+                <img className="options-icon" onClick={handleAPI} src={regenerateIMG} alt="Regenerate" />
+                <img className="options-icon" onClick={optionRate} src={rateIMG} alt="rate" />
+                <img className="options-icon" onClick={optionShare} src={shareIMG} alt="share" />
               </div>
 
             </div>
@@ -690,7 +721,6 @@ function App() {
   
             <ToastContainer />
     
-    
             {/* Modal for displaying the red alert message */}
     
             <div className="wrong">
@@ -698,7 +728,6 @@ function App() {
             </div>
     
             {/*  We show the result of the variable so we show it, and it's directly trust worthy because we traited it in the back-end */}
-    
 
             <div className="response">
 
@@ -707,7 +736,7 @@ function App() {
                   {result}
                 </p>
 
-                { (source.length > 0) && (
+                {(source.length > 0) && (
                   <p className="response-text">
                     Reference : <br/> <a>{source}</a>
                   </p>
@@ -715,10 +744,10 @@ function App() {
               </div>
 
               <div className="response-options" >
-                <img className="options-icon" src={copyIMG} alt="copy" />
-                <img className="options-icon" src={regenerateIMG} alt="Regenerate" />
-                <img className="options-icon" src={rateIMG} alt="rate" />
-                <img className="options-icon" src={shareIMG} alt="share" />
+                <img className="options-icon" onClick={optionCopy} src={copyIMG} alt="copy" />
+                <img className="options-icon" onClick={handleAPI} src={regenerateIMG} alt="Regenerate" />
+                <img className="options-icon" onClick={optionRate} src={rateIMG} alt="rate" />
+                <img className="options-icon" onClick={optionShare} src={shareIMG} alt="share" />
               </div>
 
             </div>
