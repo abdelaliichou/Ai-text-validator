@@ -1,7 +1,7 @@
 import "./Login.css";
 import React, { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { auth, GoogleProvider, FacebookProvider } from './firebase';
+import { auth, GoogleProvider, FacebookProvider, MicrosoftProvider } from './firebase';
 import axios from 'axios';
 import logoIMG from './icons/HeReFanMi.png';
 import googleIMG from './icons/google.png';
@@ -97,6 +97,20 @@ function Login() {
         position: "top-center"
       });
       console.error("Error signing in with Facebook:", error); 
+    }
+  }
+
+  const authMicrosoft = async () => {
+    try {
+      await signInWithPopup(auth, MicrosoftProvider);
+      toast.success("Logged in successfully!", {
+        position: "top-center"
+      });
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-center"
+      });
+      console.error("Error signing in with Microsoft:", error); 
     }
   }
 
@@ -323,7 +337,7 @@ function Login() {
 
               <div className="space"/>
 
-              <button className="google-button" onClick={()=>{}}>
+              <button className="google-button" onClick={authMicrosoft}>
                   <img src={microsoftIMG} alt="Google Logo" className="google-icon" />
               </button>
 
