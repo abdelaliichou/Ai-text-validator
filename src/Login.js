@@ -1,7 +1,7 @@
 import "./Login.css";
 import React, { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { auth, GoogleProvider } from './firebase';
+import { auth, GoogleProvider, FacebookProvider } from './firebase';
 import axios from 'axios';
 import logoIMG from './icons/HeReFanMi.png';
 import googleIMG from './icons/google.png';
@@ -74,6 +74,29 @@ function Login() {
       toast.error(error, {
         position: "top-center"
       });
+    }
+  }
+
+  const authFacebook = async () => {
+    try {
+      await signInWithPopup(auth, FacebookProvider);
+      toast.success("Logged in successfully!", {
+        position: "top-center"
+      });
+    } catch (error) {
+
+      if (error.message === "Firebase: Error (auth/account-exists-with-different-credential)."){
+        toast.error("You already have an account signed in with that email !", {
+          position: "top-center"
+        });
+        console.error("Error signing in with Facebook:", error); 
+        return;
+      }
+
+      toast.error(error.message, {
+        position: "top-center"
+      });
+      console.error("Error signing in with Facebook:", error); 
     }
   }
 
@@ -294,7 +317,7 @@ function Login() {
 
               <div className="space"/>
 
-              <button className="google-button" onClick={()=>{}}>
+              <button className="google-button" onClick={authFacebook}>
                   <img src={facebookIMG} alt="Google Logo" className="fb-icon" />
               </button>
 

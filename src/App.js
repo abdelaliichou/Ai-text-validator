@@ -83,8 +83,8 @@ function App() {
         data : inputText,
         opinion : ratingOpinion
       }
-      const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', datum ,{
-      // const response = await axios.post('http://127.0.0.1:4000/medicalTalk', datum ,{
+      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', datum ,{
+      const response = await axios.post('http://127.0.0.1:4000/medicalTalk', datum ,{
         onUploadProgress: progressEvent => {
           // Handle upload progress if needed
         },
@@ -138,8 +138,8 @@ function App() {
         rating : rating,
         reference : reference
       }
-      const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
-      // const response = await axios.post('http://127.0.0.1:4000/save', datum );
+      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
+      const response = await axios.post('http://127.0.0.1:4000/save', datum );
       console.log(response.data);
 
       // showing alert message if setting the rating was good 
@@ -403,7 +403,7 @@ function App() {
               value={inputText}
               onChange={handleTextChange}
             />
-
+            
 
             {/* this is the profile and logout buttons    */}
 
