@@ -39,9 +39,6 @@ function App() {
   const [hoverOpinion, setHoverOpinion] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [logged, setLogged] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(
-    { id: 4, label: 'GPT3.5', imageUrl: lockIMG }
-  );
   const [loading, setLoading] = useState(false);
   const [hoverStyle, setHoverStyle] = useState({ transform: 'scale(1)', transition: 'transform 0.3s ease' });
   const [userScroll, setUserScroll] = useState(false);
@@ -53,22 +50,25 @@ function App() {
   const dropDownOptions = [
     { id: 1, label: 'BARD (PALM)', imageUrl: lockIMG },
     { id: 2, label: 'GEMINI', imageUrl: lockIMG },
-    { id: 3, label: 'GPT4', imageUrl: lockIMG },
-    { id: 4, label: 'GPT3.5', imageUrl: lockIMG },
+    { id: 3, label: 'GPT4', imageUrl: null },
+    { id: 4, label: 'GPT3.5', imageUrl: null },
     { id: 5, label: 'MISTRAL', imageUrl: lockIMG }
   ];
 
+  const [selectedItem, setSelectedItem] = useState(
+    { id: 4, label: 'GPT3.5', imageUrl: lockIMG }
+  );
+
   const handleDropItemClick = (item) => {
-    if(item.label === "GPT3.5"){
-      setSelectedItem(item);
-      console.log(item.label)
-      setIsOpen(false);
+    if((item.label == 'BARD (PALM)') || (item.label == 'MISTRAL') || ((item.label == 'GEMINI'))){
+      toast.error("This model hasn't been implemented yet !", {
+        position: "top-center",
+       });
       return ;
     }
   
-    toast.error("This model hasn't been implemented yet !", {
-      position: "top-center"
-    });
+    setSelectedItem(item);
+    setIsOpen(false);
 
   };
   
@@ -81,8 +81,11 @@ function App() {
       const datum = {
         user : user?.uid,
         data : inputText,
-        opinion : ratingOpinion
+        opinion : ratingOpinion,
+        backend : selectedItem.label
       }
+
+      console.log(datum)
       const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', datum ,{
       // const response = await axios.post('http://127.0.0.1:4000/medicalTalk', datum ,{
         onUploadProgress: progressEvent => {
@@ -92,6 +95,7 @@ function App() {
           // Handle download progress if needed
         }
       });
+
       console.log(response.data.data);
       console.log(response.data.key);  
       console.log(response.data.news);
@@ -426,7 +430,9 @@ function App() {
               
             </div>
               
+
             {/* this is the rating place */}
+
 
             {(inputText !== "") && 
             <div className="opinion-page"> 
@@ -511,20 +517,18 @@ function App() {
                       <ul className="dropdown-menu">
                         {dropDownOptions.map(option => (
                           <li key={option.id} onClick={() => handleDropItemClick(option)}>
-                            {selectedItem.label === option.label ? 
-                            // means that we selected this option, so we dont show the lock image
-                            (
-                              <>
-                                {option.label}
-                              </>
-                            ): 
-                            // means that we havn't select this option, so we show the lock image
-                            (
-                              <>
-                                <img src={option.imageUrl} alt={option.label} />
-                                {option.label}
-                              </>
-                            )}
+                            {
+                              option.imageUrl ? (
+                                <>
+                                  <img src={option.imageUrl} />
+                                  {option.label}
+                                </>
+                              ) : (
+                                <>
+                                  {option.label}
+                                </>
+                              )
+                            }
                           </li>
                         ))}
                       </ul>
@@ -556,27 +560,25 @@ function App() {
 
                   <div className="dropdown">
                     <div className="dropdown-header" onClick={toggleDropdown}>
-                      {selectedItem ? selectedItem.label : "GPT3.5"}
+                      {selectedItem ? selectedItem.label : "Select Model"}
                       <span className="caret"></span>
                     </div>
                     {isOpen && (
                       <ul className="dropdown-menu">
                         {dropDownOptions.map(option => (
                           <li key={option.id} onClick={() => handleDropItemClick(option)}>
-                            {selectedItem.label === option.label ? 
-                            // means that we selected this option, so we dont show the lock image
-                            (
-                              <>
-                                {option.label}
-                              </>
-                            ): 
-                            // means that we havn't select this option, so we show the lock image
-                            (
-                              <>
-                                <img src={option.imageUrl} alt={option.label} />
-                                {option.label}
-                              </>
-                            )}
+                            {
+                              option.imageUrl ? (
+                                <>
+                                  <img src={option.imageUrl} />
+                                  {option.label}
+                                </>
+                              ) : (
+                                <>
+                                  {option.label}
+                                </>
+                              )
+                            }
                           </li>
                         ))}
                       </ul>

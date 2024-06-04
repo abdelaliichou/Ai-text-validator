@@ -21,5 +21,6 @@ export const auth = getAuth(app);
 export const GoogleProvider = new GoogleAuthProvider();
 export const FacebookProvider = new FacebookAuthProvider();
 export const MicrosoftProvider = new OAuthProvider('microsoft.com');
+export const AppleProvider = new OAuthProvider('apple.com');
 
 export default app;
