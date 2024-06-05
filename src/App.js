@@ -706,7 +706,7 @@ function App() {
 
             {/* this is the rating place */}
     
-            <div className="rating-page"> 
+            <div className="rating-page" style={hoverStyle}> 
               <p className="rating-text">
                 How much you trust our Model's generated response ?
               </p>
@@ -777,7 +777,7 @@ function App() {
        
             {/* this is the rating place */}
     
-            <div className="rating-page"> 
+            <div className="rating-page" style={hoverStyle}> 
               <p className="rating-text">
                 How much you trust our Model's generated response ?
               </p>
