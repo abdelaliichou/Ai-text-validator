@@ -747,10 +747,23 @@ function App() {
                 </p>
 
                 {(source.length > 0) && (
-                  <p className="response-text">
-                    Reference : <br/> <a>{source}</a>
-                  </p>
-                )}         
+                  <>
+                    { source[0] == "{Web page is not working}" ? (
+                      <p className="response-text">
+                        Reference :
+                        <br/> 
+                        <a>{source}</a>
+                      </p>
+                    ) : (
+                      <p className="response-text">
+                        Reference :
+                        <br/>
+                        <a href={source} target="_blank" style={{textDecoration:'none'}} >{source}</a>
+                      </p>
+                    )}
+                  </>
+                )} 
+
               </div>
 
               <div className="response-options" >
