@@ -142,8 +142,8 @@ function App() {
         rating : rating,
         reference : reference
       }
-      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
-      const response = await axios.post('http://127.0.0.1:4000/save', datum );
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
+      // const response = await axios.post('http://127.0.0.1:4000/save', datum );
       console.log(response.data);
 
       // showing alert message if setting the rating was good 
