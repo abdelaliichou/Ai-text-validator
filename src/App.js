@@ -142,8 +142,8 @@ function App() {
         rating : rating,
         reference : reference
       }
-      const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
-      // const response = await axios.post('http://127.0.0.1:4000/save', datum );
+      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
+      const response = await axios.post('http://127.0.0.1:4000/save', datum );
       console.log(response.data);
 
       // showing alert message if setting the rating was good 
@@ -588,7 +588,6 @@ function App() {
 
             )}
 
-
             {/*  this is the button to click to check the infomation worth  */}
             
             <button className="analyze-button" onClick={handleAPI}>
@@ -626,9 +625,21 @@ function App() {
                 </p>
 
                 {(source.length > 0) && (
-                  <p className="response-text">
-                    Reference : <br/> <a>{source}</a>
-                  </p>
+                  <>
+                    { source[0] == "{Web page is not working}" ? (
+                      <p className="response-text">
+                        Reference :
+                        <br/> 
+                        <a>{source}</a>
+                      </p>
+                    ) : (
+                      <p className="response-text">
+                        Reference :
+                        <br/>
+                        <a href={source} target="_blank" style={{textDecoration:'none'}} >{source}</a>
+                      </p>
+                    )}
+                  </>
                 )}  
               </div>
 
@@ -641,7 +652,6 @@ function App() {
 
             </div>
 
-    
             {/* this is the rating place */}
     
             <div className="rating-page" style={hoverStyle}> 
@@ -669,7 +679,6 @@ function App() {
   
             <ToastContainer />
     
-    
             {/* Modal for yellow the red alert message */}
     
             <div className="doutable">
@@ -695,7 +704,6 @@ function App() {
 
             </div>
 
-    
             {/* this is the rating place */}
     
             <div className="rating-page"> 
@@ -753,9 +761,7 @@ function App() {
               </div>
 
             </div>
-
-            
-    
+       
             {/* this is the rating place */}
     
             <div className="rating-page"> 
