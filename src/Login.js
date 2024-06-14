@@ -193,14 +193,14 @@ function Login() {
     signInWithEmailAndPassword(auth, email.trim(), password.trim())
     .then((userCredential) => {
 
-        // Signed in
-        const user = userCredential.user;
-        console.log(user)
+      // Signed in
+      const user = userCredential.user;
+      console.log(user)
 
-        setLoading(false);
-        toast.success("Logged in successfully!", {
-          position: "top-center"
-        });
+      setLoading(false);
+      toast.success("Logged in successfully!", {
+        position: "top-center"
+      });
     })
     .catch((error) => {
         setLoading(false);

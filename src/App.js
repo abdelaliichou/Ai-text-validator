@@ -45,6 +45,7 @@ function App() {
   const [life, setLife] = useState(0);
   const [asked, setAsked] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [userPoints, setUserPoints] = useState(null);  
   const navigate = useNavigate();
 
   const dropDownOptions = [
@@ -162,6 +163,13 @@ function App() {
 
     if(asked === true) return;
 
+    if(userPoints === 0){
+      toast.error("You have used all your points !", {
+        position: "top-center"
+      });
+      return ;
+    }
+
     if(inputText === ""){
       toast.error("Please enter your prompt !", {
         position: "top-center"
@@ -264,10 +272,8 @@ function App() {
   useEffect(() => {
     if (ratingOpinion !== "0")  {
       setTimeout(() => {
-
         console.log("opinion : ", ratingOpinion)
         handleOPINION()
-
       }, 500);  
     }
   }, [ratingOpinion]);
@@ -379,6 +385,63 @@ function App() {
     const cc = 'cc@example.com';
     const bcc = 'bcc@example.com';
     window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}&cc=${cc}&bcc=${bcc}`;
+  }
+
+  // checking the user points and saving the new user points after every loggin
+  useEffect(() => {
+    checkUserPoints(); 
+  }, []);
+
+  const checkUserPoints = async () => { 
+    try {
+      const datum = {
+        user : user?.uid,
+      }
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/pointcheck', datum );
+      // const response = await axios.post('http://127.0.0.1:4000/pointcheck', datum );
+      const points = response.data.points;
+      console.log("USER POINTS ARE : ", points);
+
+      // veriying if the user point are appove 0 so he can use the appe or not 
+      if (points === -1){
+        // means this is the first login to this account, so we save his points in firebase to 15 
+        setUserPoints(14)
+        await saveUserPoints(14)
+        return
+      }
+
+      if (points === 1){
+        // means that this user has spend all his points, so he cant use the model 
+        setUserPoints(0)
+        return
+      }
+
+      if (points - 1 > 0){
+        // means that this user can use the app
+        setUserPoints(points - 1)
+        await saveUserPoints(points - 1)
+        return
+      }
+   
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const saveUserPoints = async (point) => {
+    try {
+      const datum = {
+        points : point,
+        user : user?.uid,
+      }
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/pointsave', datum );
+      // const response = await axios.post('http://127.0.0.1:4000/pointsave', datum );
+      console.log(response.data)
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
