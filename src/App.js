@@ -25,7 +25,6 @@ function App() {
 
   // console.log("Home page user => ",user);   // This should log the user object
 
-
   
   const [inputText, setInputText] = useState("");
   const [result, setResult] = useState("");  
@@ -75,7 +74,7 @@ function App() {
   
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  // pass request and get response from my local backend server 
+    // pass request and get response from my local backend server 
   const fetchData = async () => {
     try {
       setLoading(true); // Set loading state to true when starting the request
@@ -110,9 +109,6 @@ function App() {
       setReference(response.data.key);
 
       // verifiying user number of essayes 
-
-      console.log(response.data)
-
       if( response.data.data === "Please try to ask something related to to medical field... !" ){
         setLife(life + 1)
       } else {
@@ -126,7 +122,7 @@ function App() {
       setLoading(false); // Set loading state to false when request is complete, to hide the progress bar
     }
   };
-
+  
   // saving the user rating
   const saveRating = async () => {
 
@@ -272,7 +268,7 @@ function App() {
   useEffect(() => {
     if (ratingOpinion !== "0")  {
       setTimeout(() => {
-        console.log("opinion : ", ratingOpinion)
+        console.log("your opinion canged to : ", ratingOpinion)
         handleOPINION()
       }, 500);  
     }
@@ -393,6 +389,14 @@ function App() {
   }, []);
 
   const checkUserPoints = async () => { 
+
+    // means that this user is the admin, so he have unlimited number of points
+    if (user?.uid === "dvvkcNQ2H0OEyQCX8uiwnoLh45t2"){
+      setUserPoints(99999)
+      await saveUserPoints(99999)
+      return 
+    }
+
     try {
       const datum = {
         user : user?.uid,
@@ -423,7 +427,6 @@ function App() {
         return
       }
    
-
     } catch (error) {
       console.error(error);
     }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Login from './Login';
+import Home from './Home';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './userContext';
@@ -14,10 +15,11 @@ root.render(
     <Router>
     <UserProvider>
       <Routes>
-          <Route index element={<Login />} />
-          <Route path="*" element={<Login />} />
+          <Route index element={<Home />} />
+          <Route path="*" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<App />} />
+          <Route path="/welcom" element={<Home />} />
       </Routes>
     </UserProvider>      
     </Router>

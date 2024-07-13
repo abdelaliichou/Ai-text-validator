@@ -1,0 +1,320 @@
+.page-container3 {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 220px  30px 220px;
+}
+
+.welcomIMG{
+  height: 350px;
+  width: 100%;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.welcomHeader{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+}
+
+.welcomHeader2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.column{
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.welcomText {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.welcomText2 {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  color: #8b8b8b;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.contentText{
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  margin-bottom: 0px;
+}
+
+.contentText2{
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  color: #8b8b8b;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.card{
+  border-radius: 12px;
+  margin: 35px;
+  box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
+  height: 330px;
+  width: 270px;
+  background-color: white;
+  overflow: hidden ;
+}
+
+.card:hover{
+  box-shadow: 0 0px 23px rgba(0, 0, 0, 0.1);
+  transform: scale(1.04); /* Scale up slightly on hover */
+  transition: transform 0.5s ease-in-out; /* Add smooth transition */
+}
+
+.cardIMG{
+  object-fit: cover;
+  height: 45%;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.cardDiscription{
+  height: 55%;
+  flex-grow: 1;
+  padding: 5px 8px 5px 8px;
+}
+
+.CardTitle{
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.CardText{
+  margin-top: 0px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #8b8b8b;
+  margin-bottom: 10px;
+}
+
+.margin{
+  margin-top: 60px;
+} 
+
+.margin2{
+  margin-top: 40px;
+} 
+
+.space2{
+  width: 30%;
+  flex-grow: 1;
+}
+
+.space3{
+  width: 15%;
+  flex-grow: 1;
+}
+
+.space4{
+  width: 5%;
+  flex-grow: 1;
+}
+
+.contentIMG{
+  object-fit: contain;
+  height: 200px;
+  flex-grow: 1;
+}
+
+.card2{
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
+  height: 230px;
+  width: 100%;
+  flex-grow: 1;
+  background-color: white;
+  overflow: hidden ;
+}
+
+.card2:hover{
+  box-shadow: 0 0px 23px rgba(0, 0, 0, 0.1);
+  transform: scale(1.04); /* Scale up slightly on hover */
+  transition: transform 0.5s ease-in-out; /* Add smooth transition */
+}
+
+.card2IMG{
+  object-fit: cover;
+  height: 100%;
+  width: 35%;
+  flex-grow: 1;
+  margin-right: 20px
+}
+
+.card2Discription{
+  height: 55%;
+  flex-grow: 1;
+  padding: 5px 8px 5px 8px;
+}
+
+.Card2Title{
+  margin-top: 8px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.Card2Text{
+  margin-top: 0px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #8b8b8b;
+  margin-bottom: 10px;
+}
+
+.members{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: hidden; 
+  scroll-behavior: smooth;
+}
+
+.MemberCardRow{
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+  height: 35%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.MemberCardColumn{
+  width: 70%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 15px;
+}
+
+.MemberCard{
+  display: flex;
+  flex: 0 0 auto; /* Prevent shrinking */
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
+  height: 200px;
+  width: 400px;
+  margin: 25px;
+  background-color: #ffffff;
+  overflow: hidden ;
+  transition: transform 0.5s ease-in-out; /* Add smooth transition */
+}
+
+.MemberCard:hover{
+  box-shadow: 0 0px 23px rgba(0, 0, 0, 0.1);
+  transform: scale(1.04); /* Scale up slightly on hover */
+  transition: transform 0.5s ease-in-out; /* Add smooth transition */
+}
+
+.MemberCardIMG{
+  object-fit: cover;
+  height: 100%;
+  border-radius: 12px;
+  width: 18%;
+  flex-grow: 1;
+}
+
+.MemberCardDiscription{
+  height: 65%;
+  flex-grow: 1;
+  margin: 19px; 
+  text-align: left;
+}
+
+.MemberCardTitle{
+  margin-top: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.MemberCardText{
+  margin: 0px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #8b8b8b;
+}
+
+.arrow{
+  height: 35px;
+  width: 35px;
+  margin : 15px 15px 0px 15px;
+}
+
+.FAQText {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  color: #8b8b8b;
+  margin: 0px;
+
+}
+
+/* /////////////////////////////////////////// Responsivite //////////////////////////////////////////////// */
+
+
+
+
+@media (max-height: 700px) {
+  
+
+}
