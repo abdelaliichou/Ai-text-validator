@@ -12,6 +12,9 @@ import rightIMG from './icons/rightArrow.svg';
 import FeatureIMG1 from './icons/security.jpg'
 import FeatureIMG2 from './icons/ux.jpg'
 import FeatureIMG3 from './icons/medical.jpg'
+import facebookIMG from './icons/facebook.png';
+import linkedinIMG from './icons/linkedin.png';
+import ngiIMG from './icons/ngi.png';
 import NavBar from "./components/Navbar";
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,7 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Home() {
 
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const members = [
     { name: 'Aladine Chetouani', job: 'Research investigator', disciption: "Professor Aladine Chetouani from the University of Orleans' Prisme Laboratory, France.", img : missinformationIMG },
     { name: 'Alessandro Bruno', job: 'Head Coordinator', disciption: "The team is under the coordination of Alessandro Bruno, a Tenure-Track Assistant Professor at the IULM University, Milan, Italy.", img : missinformationIMG },
@@ -53,224 +56,410 @@ function Home() {
   const nextPage = () => {
   //  navigate(`/home`)
   }
+
+  // whenever the width of the screen changes, we change the variable wich make us able to change the drop down from top left absolute parent to our page-container flex under the input text  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
  
 
   return (
-
+  
     <div className="page-container3">
 
-      <ToastContainer />
+      <div className="Header-container">
 
-      <NavBar/>
+        <ToastContainer />
 
-      <div className="welcomHeader">
+        <NavBar/>
 
-        <div className="welcomHeader2">
+        { windowWidth > 492 ? (
 
-          <p className="welcomText">
-            Health-care <br/> Related Fake News <br/> Metigation 
+            <div className="welcomHeader">
+
+              <div className="welcomHeader2">
+
+                <p className="HeaderText">
+                  Health-care <br/> Related Fake News <br/> Metigation 
+                </p>
+
+                <p className="HeaderText2">
+                  HeReFaNMI, an innovative platform dedicated to the detection and 
+                  the combat of the false health information spreading in the field
+                  of public health using a large language model developed by our team. 
+                  This project is funded by the NGI initiative Search (Next Generation Internet Discovery and Search), 
+                  which supports the development of trusted open source search and
+                  discovery tools.
+                </p>
+
+                <div className="column">
+                  
+                  <button className="register-button" onClick={ ()=> {}}>
+                      See Features
+                  </button>
+
+                  <button className="signin-button" onClick={ ()=> {}}>
+                      Team 
+                  </button>
+
+                </div>
+
+              </div>
+
+              <img className="welcomIMG" src={logoIMG} alt="Image" />
+
+            </div>
+
+        ) : (
+            <div className="welcomHeader">
+
+              <div className="footerIconsContainer">
+
+                <p className="HeaderText">
+                    Health care <br/> Related Fake News <br/> Metigation 
+                </p>
+
+                <div className="space6"/>   
+
+                <img className="welcomIMG" src={logoIMG} alt="Image" />
+
+              </div>
+
+              <div className="welcomHeader2">
+
+                <p className="HeaderText2">
+                  HeReFaNMI, an innovative platform dedicated to the detection and 
+                  the combat of the false health information spreading in the field
+                  of public health using a large language model developed by our team. 
+                  This project is funded by the NGI initiative Search (Next Generation Internet Discovery and Search), 
+                  which supports the development of trusted open source search and
+                  discovery tools.
+                </p>
+
+                <div className="column">
+                  
+                  <button className="register-button" onClick={ ()=> {}}>
+                      See Features
+                  </button>
+
+                  <button className="signin-button" onClick={ ()=> {}}>
+                      Team 
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+        )}
+       
+      </div>
+
+      <div className="WhatWeDo-container">
+
+          <p className="SectionText">
+            What we do?
           </p>
 
-          <p className="welcomText2">
-            HeReFaNMI, an innovative platform dedicated to the detection and 
-            the combat of the false health information spreading in the field
-            of public health using a large language model developed by our team. 
-            This project is funded by the NGI initiative Search (Next Generation Internet Discovery and Search), 
-            which supports the development of trusted open source search and
-            discovery tools.
-          </p>
+          { windowWidth > 934 ? (
+            <>
+              <p className="SectionText2">
+                Our primary aim is to develop an automated tool that empowers every internet user to discern between information <br/> supported by scientific evidence and that which is not. We strive to enable individuals to distinguish <br/> truth from falsehood, fostering a more informed and accurate understanding of the world.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="SectionText2">
+                Our primary aim is to develop an automated tool that empowers every internet user to discern between information supported by scientific evidence and that which is not. We strive to enable individuals to distinguish truth from falsehood, fostering a more informed and accurate understanding of the world.
+              </p>
+            </>
+          )}
+         
+          <div className="margin"/>
 
-          <div className="column">
-            
-            <button className="register-button" onClick={ ()=> {}}>
-                See Features
-            </button>
+          <div className="Card2Header">
 
-            <button className="signin-button" onClick={ ()=> {}}>
-                Pricing 
-            </button>
+            <div className="card2">
+
+              <img className="card2IMG" src={socialIMG} alt="Image" />
+
+              <div className="card2Discription">
+
+                <p className="Card2Title">
+                  Social goals
+                </p>
+
+                <p className="Card2Text">
+                  Combat the propagation of fake news within health-related information.
+                </p>
+
+                <p className="Card2Text">
+                  Restore trustworthiness to the internet community.
+                </p>
+                
+                <p className="Card2Text">
+                Safeguard individuals against misinformation while promoting the dissemination of accurate health information.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="space4"/>
+
+            <div className="card2">
+
+              <img className="card2IMG" src={tech2IMG} alt="Image" />
+
+              <div className="card2Discription">
+
+                <p className="Card2Title">
+                  Technological goals
+                </p>
+
+                <p className="Card2Text">
+                  Develop an autonomous system equipped with continual learning capabilities.
+                </p>
+
+                <p className="Card2Text">
+                  Leverage cutting-edge ML algorithms to provide individuals with an automated and reliable solution.
+                </p>
+
+                <p className="Card2Text">
+                  Harness the power of technology to enhance overall societal well-being and improve public health outcomes.
+                </p>
+
+              </div>
+
+            </div>
 
           </div>
-
-        </div>
-
-        <img className="welcomIMG" src={logoIMG} alt="Image" />
 
       </div>
 
-      <div className="content">
+      <div className="WhatWeDo2-container">
 
-        <div className="margin"/>
-        <div className="margin"/>
+        { windowWidth > 512 ? (
+          <>
+            <div className="WhatWeDoHeader">
 
-        <p className="welcomText">
-          What we do?
-        </p>
+              <div className="space3"/>
 
-        <p className="contentText2">
-          Our primary aim is to develop an automated tool that empowers every internet user to discern between information <br/> supported by scientific evidence and that which is not. We strive to enable individuals to distinguish <br/> truth from falsehood, fostering a more informed and accurate understanding of the world.
-        </p>
+              <img className="WhatWeDoIMG" src={missinformationIMG} alt="Image" />
 
-        <div className="margin"/>
+              <div className="space2"/>
 
-        <div className="welcomHeader">
+              <div className="welcomHeader2">
 
-          <div className="card2">
+                <p className="WhatWeDoText">
+                  Misinformation
+                </p>
 
-            <img className="card2IMG" src={socialIMG} alt="Image" />
+                <p className="WhatWeDoText2">
+                  Ensure the protection of individuals from the spread of misinformation by implementing rigorous measures to verify and correct false claims. At the same time, actively promote the dissemination of accurate and reliable health information to the public, fostering an informed and health-conscious community. By prioritizing both aspects, we aim to create a balanced environment where truth prevails and individuals can make well-informed decisions about their health and well-being.
+                </p>
 
-            <div className="card2Discription">
-
-              <p className="Card2Title">
-                Social goals
-              </p>
-
-              <p className="Card2Text">
-                Combat the propagation of fake news within health-related information.
-              </p>
-
-              <p className="Card2Text">
-                Restore trustworthiness to the internet community.
-              </p>
-              
-              <p className="Card2Text">
-              Safeguard individuals against misinformation while promoting the dissemination of accurate health information.
-              </p>
+              </div>
 
             </div>
 
-          </div>
+            <div className="WhatWeDoHeader">
 
-          <div className="space4"/>
+              <div className="welcomHeader2">
 
-          <div className="card2">
+                <p className="WhatWeDoText">
+                  Fake News
+                </p>
 
-            <img className="card2IMG" src={tech2IMG} alt="Image" />
+                <p className="WhatWeDoText2">
+                  Combat the propagation of fake news and misinformation within health-related information, ensuring that accurate and reliable data reaches the public. This involves identifying and correcting false claims, promoting verified sources, and educating individuals on how to discern trustworthy health information from misleading or deceptive content. By doing so, we aim to protect public health, enhance the quality of healthcare decisions, and foster a well-informed community.
+                </p>
 
-            <div className="card2Discription">
+              </div>
 
-              <p className="Card2Title">
-                Technological goals
-              </p>
+              <div className="space2"/>
 
-              <p className="Card2Text">
-                Develop an autonomous system equipped with continual learning capabilities.
-              </p>
+              <img className="WhatWeDoIMG" src={fackIMG} alt="Image" />
 
-              <p className="Card2Text">
-                Leverage cutting-edge ML algorithms to provide individuals with an automated and reliable solution.
-              </p>
-
-              <p className="Card2Text">
-                Harness the power of technology to enhance overall societal well-being and improve public health outcomes.
-              </p>
+              <div className="space3"/>
 
             </div>
 
-          </div>
+            <div className="WhatWeDoHeader">
 
-        </div>
+              <div className="space3"/>
 
-        <div className="welcomHeader">
+              <img className="WhatWeDoIMG" src={aiIMG} alt="Image" />
 
-          <div className="welcomHeader2">
+              <div className="space2"/>
 
-            <p className="contentText">
-              Fake News
-            </p>
+              <div className="welcomHeader2">
 
-            <p className="welcomText2">
-              Combat the propagation of fake news and misinformation within health-related information, ensuring that accurate and reliable data reaches the public. This involves identifying and correcting false claims, promoting verified sources, and educating individuals on how to discern trustworthy health information from misleading or deceptive content. By doing so, we aim to protect public health, enhance the quality of healthcare decisions, and foster a well-informed community.
-            </p>
+                <p className="WhatWeDoText">
+                  AI & Society
+                </p>
 
-          </div>
+                <p className="WhatWeDoText2">
+                Harness the transformative power of cutting-edge technology to significantly enhance overall societal well-being. By leveraging advanced tools and innovative solutions, we can improve public health outcomes, making healthcare more accessible, efficient, and effective. This approach ensures that communities thrive through better disease prevention, quicker diagnostics, personalized treatments, and improved healthcare delivery systems. The integration of technology in public health not only addresses current health challenges but also proactively prepares us for future health crises, ultimately leading to a healthier, more resilient society.
+                </p>
 
-          <div className="space2"/>
+              </div>
 
-          <img className="contentIMG" src={fackIMG} alt="Image" />
+            </div>
 
-          <div className="space3"/>
+            <div className="WhatWeDoHeader">
 
-        </div>
+              <div className="welcomHeader2">
 
-        <div className="welcomHeader">
+                <p className="WhatWeDoText">
+                  Latest Tech 
+                </p>
 
-          <div className="space3"/>
+                <p className="WhatWeDoText2">
+                Leverage cutting-edge machine learning algorithms to provide individuals with an automated and reliable solution. These advanced algorithms analyze vast amounts of  data to deliver precise and insightful predictions, optimizing various aspects of decision-making processes. By automating complex tasks, users can benefit from increased efficiency, reduced error rates, and a deeper understanding of patterns and trends that were previously difficult to discern. This innovative approach empowers individuals to make data-driven decisions with confidence, ensuring accuracy and reliability in their endeavors.
+                </p>
 
-          <img className="contentIMG" src={missinformationIMG} alt="Image" />
+              </div>
 
-          <div className="space2"/>
+              <div className="space2"/>
 
-          <div className="welcomHeader2">
+              <img className="WhatWeDoIMG" src={techIMG} alt="Image" />
 
-            <p className="contentText">
-              Misinformation
-            </p>
+              <div className="space3"/>
 
-            <p className="welcomText2">
-              Ensure the protection of individuals from the spread of misinformation by implementing rigorous measures to verify and correct false claims. At the same time, actively promote the dissemination of accurate and reliable health information to the public, fostering an informed and health-conscious community. By prioritizing both aspects, we aim to create a balanced environment where truth prevails and individuals can make well-informed decisions about their health and well-being.
-            </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="WhatWeDoHeader">
 
-          </div>
+              <div className="margin2"/>
 
-        </div>
+              <img className="WhatWeDoIMG" src={missinformationIMG} alt="Image" />
 
-        <div className="welcomHeader">
+              <div className="margin2"/>
 
-          <div className="welcomHeader2">
+              <div className="welcomHeader2">
 
-            <p className="contentText">
-              Latest Tech 
-            </p>
+                <p className="WhatWeDoText">
+                  Misinformation
+                </p>
 
-            <p className="welcomText2">
-             Leverage cutting-edge machine learning algorithms to provide individuals with an automated and reliable solution. These advanced algorithms analyze vast amounts of  data to deliver precise and insightful predictions, optimizing various aspects of decision-making processes. By automating complex tasks, users can benefit from increased efficiency, reduced error rates, and a deeper understanding of patterns and trends that were previously difficult to discern. This innovative approach empowers individuals to make data-driven decisions with confidence, ensuring accuracy and reliability in their endeavors.
-            </p>
+                <p className="WhatWeDoText2">
+                  Ensure the protection of individuals from the spread of misinformation by implementing rigorous measures to verify and correct false claims. At the same time, actively promote the dissemination of accurate and reliable health information to the public, fostering an informed and health-conscious community. By prioritizing both aspects, we aim to create a balanced environment where truth prevails and individuals can make well-informed decisions about their health and well-being.
+                </p>
 
-          </div>
+              </div>
 
-          <div className="space2"/>
+            </div>
 
-          <img className="contentIMG" src={techIMG} alt="Image" />
+            <div className="WhatWeDoHeader">
 
-          <div className="space3"/>
+              <div className="margin2"/>
 
-        </div>
+              <img className="WhatWeDoIMG" src={fackIMG} alt="Image" />
 
-        <div className="welcomHeader">
+              <div className="margin2"/>
 
-          <div className="space3"/>
+              <div className="welcomHeader2">
 
-          <img className="contentIMG" src={aiIMG} alt="Image" />
+                <p className="WhatWeDoText">
+                  Fake News
+                </p>
 
-          <div className="space2"/>
+                <p className="WhatWeDoText2">
+                  Combat the propagation of fake news and misinformation within health-related information, ensuring that accurate and reliable data reaches the public. This involves identifying and correcting false claims, promoting verified sources, and educating individuals on how to discern trustworthy health information from misleading or deceptive content. By doing so, we aim to protect public health, enhance the quality of healthcare decisions, and foster a well-informed community.
+                </p>
 
-          <div className="welcomHeader2">
+              </div>
 
-            <p className="contentText">
-              AI & Society
-            </p>
+            </div>
 
-            <p className="welcomText2">
-             Harness the transformative power of cutting-edge technology to significantly enhance overall societal well-being. By leveraging advanced tools and innovative solutions, we can improve public health outcomes, making healthcare more accessible, efficient, and effective. This approach ensures that communities thrive through better disease prevention, quicker diagnostics, personalized treatments, and improved healthcare delivery systems. The integration of technology in public health not only addresses current health challenges but also proactively prepares us for future health crises, ultimately leading to a healthier, more resilient society.
-            </p>
+            <div className="WhatWeDoHeader">
 
-          </div>
+              <div className="margin2"/>
 
-        </div>
+              <img className="WhatWeDoIMG" src={aiIMG} alt="Image" />
 
-        <div className="margin"/>
+              <div className="margin2"/>
 
-        <p className="welcomText">
+              <div className="welcomHeader2">
+
+                <p className="WhatWeDoText">
+                  AI & Society
+                </p>
+
+                <p className="WhatWeDoText2">
+                Harness the transformative power of cutting-edge technology to significantly enhance overall societal well-being. By leveraging advanced tools and innovative solutions, we can improve public health outcomes, making healthcare more accessible, efficient, and effective. This approach ensures that communities thrive through better disease prevention, quicker diagnostics, personalized treatments, and improved healthcare delivery systems. The integration of technology in public health not only addresses current health challenges but also proactively prepares us for future health crises, ultimately leading to a healthier, more resilient society.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="WhatWeDoHeader">
+
+              <div className="marign2"/>
+
+              <img className="WhatWeDoIMG" src={techIMG} alt="Image" />
+
+              <div className="margin2"/>
+
+              <div className="welcomHeader2">
+
+                <p className="WhatWeDoText">
+                  Latest Tech 
+                </p>
+
+                <p className="WhatWeDoText2">
+                Leverage cutting-edge machine learning algorithms to provide individuals with an automated and reliable solution. These advanced algorithms analyze vast amounts of  data to deliver precise and insightful predictions, optimizing various aspects of decision-making processes. By automating complex tasks, users can benefit from increased efficiency, reduced error rates, and a deeper understanding of patterns and trends that were previously difficult to discern. This innovative approach empowers individuals to make data-driven decisions with confidence, ensuring accuracy and reliability in their endeavors.
+                </p>
+
+              </div>
+
+
+
+            </div>
+          </>
+        )
+        }
+        
+      </div>
+
+      <div className="Team-container">
+
+        <p className="SectionText">
           Meet our team
         </p>
 
-        <p className="contentText2">
-          Our team consists of doctors, professors, researchers, and interns. Each
-          member brings valuable expertise,<br/> working together to develop and deliver
-          this tool. We are committed to excellence and continually <br/>  strive to provide
-          high-quality resources and solutions for the community.
-        </p>
+        { windowWidth > 1005 ? (
+          <>
+            <p className="SectionText2">
+              Our team consists of doctors, professors, researchers, and interns. Each
+              member brings valuable expertise,<br/> working together to develop and deliver
+              this tool. We are committed to excellence and continually <br/>  strive to provide
+              high-quality resources and solutions for the community.
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="SectionText2">
+              Our team consists of doctors, professors, researchers, and interns. Each
+              member brings valuable expertise working together to develop and deliver
+              this tool. We are committed to excellence and continually  strive to provide
+              high-quality resources and solutions for the community.
+            </p>
+          </>
+        )}
 
         <div className="margin"/>
 
@@ -289,7 +478,7 @@ function Home() {
 
                     <p className="MemberCardTitle"> {member.name} </p>
 
-                    <p className="MemberCardText"> {member.job} </p>
+                    <p className="MemberCardSubTitle"> {member.job} </p>
 
                   </div>                  
                   
@@ -316,148 +505,366 @@ function Home() {
 
         </div>
 
-        <div className="margin"/>
+      </div>
 
-        <p className="welcomText">
-          Platforme features
+      <div className="Features-container">
+
+          <p className="SectionText">
+            Platforme features
+          </p>
+
+          { windowWidth > 1005 ? (
+            <>
+              <p className="SectionText2">
+                The main objective is to allow users to verify the veracity of
+                medical information in real time <br/>while guaranteeing an experience
+                secure and intuitive user.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="SectionText2">
+                The main objective is to allow users to verify the veracity of
+                medical information in real timev while guaranteeing an experience
+                secure and intuitive user.
+              </p>
+            </>
+          )}
+
+          <div className="CardColumn">
+
+            <div className="card">
+
+              <img className="cardIMG" src={FeatureIMG1} alt="Image" />
+
+              <div className="cardDiscription">
+
+                <p className="CardTitle">
+                  Google Firebase
+                </p>
+
+                <p className="CardText">
+                  Ensuring secure user auth and personal data by using Firebase, a secure solution provided by Google.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="card">
+
+              <img className="cardIMG" src={FeatureIMG2} alt="Image" />
+
+              <div className="cardDiscription">
+
+                <p className="CardTitle">
+                  Optimized UX
+                </p>
+
+                <p className="CardText">
+                  Offer an intuitive, responsive and centralized user interface, developed in React.js which makes it so easy to use 
+                </p>
+              </div>
+
+            </div>
+
+            <div className="card">
+
+              <img className="cardIMG" src={FeatureIMG3} alt="Image" />
+
+              <div className="cardDiscription">
+
+                <p className="CardTitle">
+                  Medical Verification 
+                </p>
+
+                <p className="CardText">
+                  Allow users to submit medical information and
+                  receive detailed assessments of their reliability, based on AI  
+                </p>
+
+              </div>
+
+            </div>
+          
+          </div>
+          
+      </div>
+
+      <div className="statistics-container">
+
+        <p className="statistics-title">
+          NGI SEARCH BENEFITS FOR YOUR PROJECT
         </p>
 
-        <p className="contentText2">
-          The main objective is to allow users to verify the veracity of
-          medical information in real time <br/>while guaranteeing an experience
-          secure and intuitive user.
-        </p>
+        { windowWidth > 1239 ? (
+          <>
+            <p className="statistics-disc">
+              Do your ideas for finding information and resources on the Internet respect the privacy of end-users?
+              The NGI Search project helps you turn <br/>them into reality with financial, technical and community support.  
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="statistics-disc">
+              Do your ideas for finding information and resources on the Internet respect the privacy of end-users?
+              The NGI Search project helps you turnm them into reality with financial, technical and community support.  
+            </p>
+          </>
+        )}
+
+        <div className="margin2"/>
 
         <div className="column">
 
-          <div className="card">
+          <p className="statistics-text">
+            Open Call #5 is open May 29-July 29, 2024
+          </p>
 
-            <img className="cardIMG" src={FeatureIMG1} alt="Image" />
+          <div className="space2"/>
+          <div className="space2"/>
 
-            <div className="cardDiscription">
+          <p className="statistics-text">
+            Get funded up to €150,000 to innovate
+          </p>
 
-              <p className="CardTitle">
-                Google Firebase
+          <div className="space2"/>
+          <div className="space2"/>
+
+          <p className="statistics-text">
+          10 services provided during one year   
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="FAQ-container">
+
+        <div className="content">
+
+          <p className="SectionText">
+            FAQ
+          </p>
+
+          { windowWidth > 1211 ? (
+            <>
+              <p className="SectionText2">
+                collection of common inquiries and their corresponding answers, typically curated
+                to address the most prevalent or recurring  concerns <br/> and queries posed by users to
+                provide and facilitate understanding and resolve doubts without the need for direct assistance.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="SectionText2">
+                collection of common inquiries and their corresponding answers, typically curated
+                to address the most prevalent or recurring  concerns and queries posed by users to
+                provide and facilitate understanding and resolve doubts without the need for direct assistance.
+              </p>
+            </>
+          )}
+
+          <div className="margin"/>
+
+          <div className="welcomHeader2">
+
+            <p className="FAQTitle">
+            Why was HeReFaNMi created?
+            </p>
+
+            <p className="FAQText">
+              HeReFaNMi was created in response to the critical challenge of misinformation, particularly highlighted during the COVID-19 pandemic. The widespread dissemination of inaccurate health information has eroded public trust in official guidelines and posed significant obstacles to public health efforts. HeReFaNMi aims to address these issues by providing reliable and accurate health information.          
+            </p>
+
+          </div>
+
+          <div className="margin2"/>
+
+          <div className="welcomHeader2">
+
+            <p className="FAQTitle">
+              How does HeReFaNMi work?
+            </p>
+
+            <p className="FAQText">
+              HeReFaNMi uses cutting-edge AI &  LLM algorithms to monitor, detect, and combat fake news in health-related information. The system is designed to automatically identify and flag inaccurate information provided by users, helping individuals access reliable health information quickly and efficiently.
+            </p>
+
+          </div>
+
+          <div className="margin2"/>
+
+          <div className="welcomHeader2">
+
+            <p className="FAQTitle">
+              How does HeReFaNMi benefit the public?
+            </p>
+
+            <p className="FAQText">
+              HeReFaNMi enhances societal well-being by ensuring that accurate health information is readily available and easily accessible. By combating misinformation, the project helps maintain public trust in scientific research and official health guidelines, ultimately improving public health outcomes.
+            </p>
+
+          </div>
+
+          <div className="margin2"/>
+
+          <div className="welcomHeader2">
+
+            <p className="FAQTitle">
+            How can organizations partner with HeReFaNMi?
+            </p>
+
+            <p className="FAQText">
+              Organizations interested in partnering with HeReFaNMi can contact the project team through the official email. Partnerships can involve data sharing, collaborative research, and joint initiatives to combat health-related misinformation.
+              HeReFaNMi  is a product oriented research project, the team appriciates any contribution you can add to the project. 
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div className="footer-container">
+        
+        <div className="footer">
+
+          <div className="footerheader">
+
+            <div className="footer2 ">
+
+              <p className="navText2">
+                  HeReFanMi<p className="dot">.</p> 
               </p>
 
-              <p className="CardText">
-                Ensuring secure user auth and personal data by using Firebase, a secure solution provided by Google.
+              <div className="space5"/>
+
+              <p className="FooterText">
+                HeReFaNMi (Health-Related Fake News Monitoring) is funded by the NGI Search european project
+                which is an European project designed to support entrepreneurs, tech-geeks, developers, and socially engaged people,  who are capable of challenging the way we search and discover information and resources on the internet.     
               </p>
+
+              <div className="space5"/>
+
+              <div className="footerIconsContainer">
+
+                <img className="footerIcon" src={facebookIMG} alt="Image" />
+                <img className="footerIcon" src={linkedinIMG} alt="Image" />
+                <img className="footerIcon" src={ngiIMG} alt="Image" />
+
+              </div>
+              
+            </div>
+
+            <div className="space2"/>
+
+            <div className="footerDisc">
+
+              <div className="footerInf">
+
+                <p className="footerTitle">
+                  About
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Home
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  About Us
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Role
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Features
+                </p>
+              
+                <div className="space6"/>
+
+              </div>
+
+              <div className="footerInf">
+
+                <p className="footerTitle">
+                  Info
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Contacts
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  NGI
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Our team
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  FAQ
+                </p>
+
+                <div className="space6"/>
+              
+              </div>
+
+              <div className="footerInf">
+
+                <p className="footerTitle">
+                  Contact
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Address: <br/>
+                  3, rue Charles du Coulomb, Orleans 45100, France
+                </p>
+
+                <div className="space5"/>
+
+                <p className="FooterText">
+                  Contact: <br/>
+                  +33 7 80 39 15 53
+                  a.ichou@esi-sba.dz
+                </p>
+
+                <div className="space6"/>
+              
+              </div>
 
             </div>
 
           </div>
 
-          <div className="card">
+          <div className="footerdevider"/>
 
-            <img className="cardIMG" src={FeatureIMG2} alt="Image" />
-
-            <div className="cardDiscription">
-
-              <p className="CardTitle">
-                Optimized UX
-              </p>
-
-              <p className="CardText">
-                Offer an intuitive, responsive and centralized user interface, developed in React.js which makes it so easy to use 
-              </p>
-            </div>
-
-          </div>
-
-          <div className="card">
-
-            <img className="cardIMG" src={FeatureIMG3} alt="Image" />
-
-            <div className="cardDiscription">
-
-              <p className="CardTitle">
-                Medical Verification 
-              </p>
-
-              <p className="CardText">
-                Allow users to submit medical information and
-                receive detailed assessments of their reliability, based on AI  
-              </p>
-
-            </div>
-
-          </div>
-         
-        </div>
-
-        <div className="margin2"/>
-
-        <p className="welcomText">
-          FAQ
-        </p>
-
-        <p className="contentText2">
-          collection of common inquiries and their corresponding answers, typically curated
-          to address the most prevalent or recurring  concerns <br/> and queries posed by users to
-          provide and facilitate understanding and resolve doubts without the need for direct assistance.
-        </p>
-
-        <div className="margin"/>
-
-        <div className="welcomHeader2">
-
-          <p className="Card2Title">
-           Why was HeReFaNMi created?
-          </p>
-
-          <p className="FAQText">
-            HeReFaNMi was created in response to the critical challenge of misinformation, particularly highlighted during the COVID-19 pandemic. The widespread dissemination of inaccurate health information has eroded public trust in official guidelines and posed significant obstacles to public health efforts. HeReFaNMi aims to address these issues by providing reliable and accurate health information.          
+          <p className="FooterLittleText">
+            © Ichou Abdelali 2024. All right reserved.
           </p>
 
         </div>
-
-        <div className="margin2"/>
-
-        <div className="welcomHeader2">
-
-          <p className="Card2Title">
-            How does HeReFaNMi work?
-          </p>
-
-          <p className="FAQText">
-            HeReFaNMi uses cutting-edge AI &  LLM algorithms to monitor, detect, and combat fake news in health-related information. The system is designed to automatically identify and flag inaccurate information provided by users, helping individuals access reliable health information quickly and efficiently.
-          </p>
-
-        </div>
-
-        <div className="margin2"/>
-
-        <div className="welcomHeader2">
-
-          <p className="Card2Title">
-            How does HeReFaNMi benefit the public?
-          </p>
-
-          <p className="FAQText">
-            HeReFaNMi enhances societal well-being by ensuring that accurate health information is readily available and easily accessible. By combating misinformation, the project helps maintain public trust in scientific research and official health guidelines, ultimately improving public health outcomes.
-          </p>
-
-        </div>
-
-        <div className="margin2"/>
-
-        <div className="welcomHeader2">
-
-          <p className="Card2Title">
-           How can organizations partner with HeReFaNMi?
-          </p>
-
-          <p className="FAQText">
-            Organizations interested in partnering with HeReFaNMi can contact the project team through the official email. Partnerships can involve data sharing, collaborative research, and joint initiatives to combat health-related misinformation.
-            HeReFaNMi  is a product oriented research project, the team appriciates any contribution you can add to the project. 
-          </p>
-
-        </div>
-
-        <div className="margin"/>
-
-        {/* fooooooooooooooooooooooottter */}
 
       </div>
 
