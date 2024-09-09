@@ -45,6 +45,7 @@ function Home() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
+
   const navRef = useRef(null);
 
   const Memberscroll = (scrollOffset) => {
@@ -53,12 +54,6 @@ function Home() {
 
   // declaration of all our variables
   const navigate = useNavigate();
-
-  const handleEnterpress = (e) => {
-    if (e.key === 'Enter') {
-
-    }
-  };
 
   useEffect(()=>{
     nextPage();
@@ -81,31 +76,25 @@ function Home() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  
+  // Handle mouse up and touch end events
+  const handleEnd = () => {
+    setIsDragging(false);
+  };
 
-  // Function to handle mouse down event
-  const handleMouseDown = (e) => {
+  // Handle touch start event
+  const handleTouchStart = (e) => {
     setIsDragging(true);
-    setStartX(e.pageX - navRef.current.offsetLeft);
+    setStartX(e.touches[0].pageX - navRef.current.offsetLeft);
     setScrollLeft(navRef.current.scrollLeft);
   };
 
-  // Function to handle mouse up event
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  // Function to handle mouse leave event
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  // Function to handle mouse move event
-  const handleMouseMove = (e) => {
-    if (!isDragging) return; // If not dragging, exit
-    e.preventDefault();
-    const x = e.pageX - navRef.current.offsetLeft; // Calculate the current mouse position
-    const walk = (x - startX) * 2; // The multiplied factor determines the scroll speed
-    navRef.current.scrollLeft = scrollLeft - walk; // Update the scroll position
+  // Handle touch move event
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - navRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust scroll speed by multiplying factor
+    navRef.current.scrollLeft = scrollLeft - walk;
   };
 
  
@@ -502,10 +491,9 @@ function Home() {
 
         <div className="members"
              ref={navRef} 
-             onMouseDown={handleMouseDown}
-             onMouseLeave={handleMouseLeave}
-             onMouseUp={handleMouseUp}
-             onMouseMove={handleMouseMove}
+             onTouchStart={handleTouchStart}
+             onTouchMove={handleTouchMove}
+             onTouchEnd={handleEnd}
         >
 
           {
