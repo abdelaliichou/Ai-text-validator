@@ -2,6 +2,9 @@
 
 /* ########################### BIG containers ########################################## */
 
+html {
+  scroll-behavior: smooth; /* Enables smooth scrolling */
+}
 
 .footer-container {
   display: flex;
@@ -162,6 +165,8 @@
   width: 100%;
   overflow-x: hidden; 
   scroll-behavior: smooth;
+  cursor: grab; /* Change cursor to grab */
+  user-select: none; /* Disable text selection */
 }
 
 .MemberCardRow{
@@ -338,6 +343,16 @@
   margin-top: 0px;
 }
 
+.FooterText2{
+  margin-top: 0px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  color: #8b8b8b;
+  margin-bottom: 10px;
+}
+
 .FooterText{
   margin-top: 0px;
   font-size: 0.9rem;
@@ -346,6 +361,11 @@
   font-family: 'Poppins', sans-serif;
   color: #8b8b8b;
   margin-bottom: 10px;
+}
+
+.FooterText:hover {
+  font-family: 'Poppins', sans-serif;
+  color: #000000;
 }
 
 .FooterLittleText{
@@ -553,8 +573,8 @@
 
 .MemberCardIMG{
   object-fit: cover;
-  height: 100%;
-  border-radius: 12px;
+  height: 70px;
+  border-radius: 5px;
   width: 18%;
   flex-grow: 1;
 }
@@ -902,8 +922,8 @@
   
   .MemberCardIMG{
     object-fit: cover;
-    height: 100%;
-    border-radius: 12px;
+    height: 60px;
+    border-radius: 5px;
     width: 15%;
     flex-grow: 1;
   }
@@ -958,6 +978,21 @@
   }
   
   .FooterText{
+    margin-top: 0px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    color: #8b8b8b;
+    margin-bottom: 10px;
+  }
+
+  .FooterText:hover {
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+  }
+
+  .FooterText2{
     margin-top: 0px;
     font-size: 0.8rem;
     font-weight: 500;
@@ -1038,8 +1073,8 @@
   
   .MemberCardIMG{
     object-fit: cover;
-    height: 100%;
-    border-radius: 12px;
+    height: 50px;
+    border-radius: 5px;
     width: 13%;
     flex-grow: 1;
   }
@@ -1452,8 +1487,8 @@
   
   .MemberCardIMG{
     object-fit: cover;
-    height: 100%;
-    border-radius: 12px;
+    height: 45px;
+    border-radius: 5px;
     width: 15%;
     flex-grow: 1;
   }
@@ -1915,10 +1950,10 @@
   
   .MemberCardIMG{
     object-fit: cover;
-    height: 100%;
+    height: 40px;
     flex-grow: 1;
     width: 15%;
-    border-radius: 12px;
+    border-radius: 5px;
   }
   
   .MemberCardDiscription{

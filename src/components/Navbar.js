@@ -37,12 +37,12 @@ function NavBar() {
                     
 
                         <ul className="navbar">
-                            <li className="navText" onClick={() => nextPage("welcom")}>Home</li>
-                            <li className="navText" onClick={() => nextPage("features")}>Role</li>
-                            <li className="navText" onClick={() => nextPage("pricing")}>Team</li>
-                            <li className="navText" onClick={() => nextPage("about")}>Features</li>
-                            <li className="navText" onClick={() => nextPage("contact")}>NGI</li>
-                            <li className="navText" onClick={() => nextPage("contact")}>FAQ</li>
+                            <li><a className="navText" style={{textDecoration:'none'}} href="#home">Home</a></li>
+                            <li><a className="navText" style={{textDecoration:'none'}} href="#role">Role</a></li>
+                            <li><a className="navText" style={{textDecoration:'none'}} href="#team">Team</a></li>
+                            <li><a className="navText" style={{textDecoration:'none'}} href="#features">Features</a></li>
+                            <li><a className="navText" style={{textDecoration:'none'}} href="#ngi">NGI</a></li>
+                            <li><a className="navText" style={{textDecoration:'none'}} href="#faq">FAQ</a></li>
                         </ul>
 
                         <div className="space"/>
@@ -83,14 +83,12 @@ function NavBar() {
                     </nav>
 
                     <ul className="navbar">
-
-                        <li className="navText" onClick={() => nextPage("welcom")}>Home</li>
-                        <li className="navText" onClick={() => nextPage("features")}>Role</li>
-                        <li className="navText" onClick={() => nextPage("pricing")}>Team</li>
-                        <li className="navText" onClick={() => nextPage("about")}>Features</li>
-                        <li className="navText" onClick={() => nextPage("contact")}>NGI</li>
-                        <li className="navText" onClick={() => nextPage("contact")}>FAQ</li>
-
+                        <li><a className="navText" style={{textDecoration:'none'}} href="#home">Home</a></li>
+                        <li><a className="navText" style={{textDecoration:'none'}} href="#role">Role</a></li>
+                        <li><a className="navText" style={{textDecoration:'none'}} href="#team">Team</a></li>
+                        <li><a className="navText" style={{textDecoration:'none'}} href="#features">Features</a></li>
+                        <li><a className="navText" style={{textDecoration:'none'}} href="#ngi">NGI</a></li>
+                        <li><a className="navText" style={{textDecoration:'none'}} href="#faq">FAQ</a></li>
                     </ul>
                 </>
             )

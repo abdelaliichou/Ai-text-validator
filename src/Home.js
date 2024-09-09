@@ -15,6 +15,14 @@ import FeatureIMG3 from './icons/medical.jpg'
 import facebookIMG from './icons/facebook.png';
 import linkedinIMG from './icons/linkedin.png';
 import ngiIMG from './icons/ngi.png';
+import ichouIMG from './icons/ichou.jpeg';
+import oualidIMG from './icons/oualid.jpeg';
+import hamdiIMG from './icons/hamdi.jpeg';
+import marouaneIMG from './icons/merouane.jpeg';
+import luigiIMG from './icons/luigi.jpeg';
+import allesandroIMG from './icons/allesandro.jpeg';
+import aladineIMG from './icons/aladine.jpeg';
+import amineIMG from './icons/amine.png';
 import NavBar from "./components/Navbar";
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -24,15 +32,18 @@ function Home() {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const members = [
-    { name: 'Aladine Chetouani', job: 'Research investigator', disciption: "Professor Aladine Chetouani from the University of Orleans' Prisme Laboratory, France.", img : missinformationIMG },
-    { name: 'Alessandro Bruno', job: 'Head Coordinator', disciption: "The team is under the coordination of Alessandro Bruno, a Tenure-Track Assistant Professor at the IULM University, Milan, Italy.", img : missinformationIMG },
-    { name: 'Pier-Luigie Mazzeo', job: 'Research investigator', disciption: "Research Pier-Luigie Mazzeo from CNR (Italian Research Council) ISASI (Institute of Applied Science and Intelligent Systems) in Italy", img : missinformationIMG },
-    { name: 'Mohamed Amine KERKOURI', job: 'AI Researcher, Web-Dev, Team Lead', disciption: "Mohamed Amine KERKOURI conducts research on human visual perception and attention modeling using deep learning approaches.", img : missinformationIMG },
-    { name: 'Marouane Tliba', job: 'Communication, Team Lead', disciption: "Marouane Tliba conducts research about improving the representational ability of neural networks for 3D content perceptual assessment.", img : missinformationIMG },
-    { name: 'Abderrahmene Hamdi', job: 'AI/LLMs Intern', disciption: "CS student (ESI) | Machine Learning | Deep learning", img : missinformationIMG },
-    { name: 'Walid Taib', job: 'AI, Data pipline Intern', disciption: "Research intern, Junior Data Scientist, and Final Student at the Higher National School of Telecommunication and ICT", img : missinformationIMG },
-    { name: 'Abdelali ichou', job: 'Web dev, UI/UX intern', disciption: "Computer science student at Orleans university | Native mobile developer | Web developer", img : missinformationIMG }
+    { name: 'Aladine Chetouani', job: 'Research investigator', disciption: "Professor Aladine Chetouani from the University of Orleans' Prisme Laboratory, France.", img : aladineIMG },
+    { name: 'Alessandro Bruno', job: 'Head Coordinator', disciption: "The team is under the coordination of Alessandro Bruno, a Tenure-Track Assistant Professor at the IULM University, Milan, Italy.", img : allesandroIMG },
+    { name: 'Pier-Luigie Mazzeo', job: 'Research investigator', disciption: "Research Pier-Luigie Mazzeo from CNR (Italian Research Council) ISASI (Institute of Applied Science and Intelligent Systems) in Italy", img : luigiIMG },
+    { name: 'Mohamed Amine KERKOURI', job: 'AI Researcher, Web-Dev, Team Lead', disciption: "Mohamed Amine KERKOURI conducts research on human visual perception and attention modeling using deep learning approaches.", img : amineIMG },
+    { name: 'Marouane Tliba', job: 'Communication, Team Lead', disciption: "Marouane Tliba conducts research about improving the representational ability of neural networks for 3D content perceptual assessment.", img : marouaneIMG },
+    { name: 'Abderrahmene Hamdi', job: 'AI/LLMs Intern', disciption: "CS student (ESI) | Machine Learning | Deep learning", img : hamdiIMG },
+    { name: 'Walid Taib', job: 'AI, Data pipline Intern', disciption: "Research intern, Junior Data Scientist, and Final Student at the Higher National School of Telecommunication and ICT", img : oualidIMG },
+    { name: 'Abdelali ichou', job: 'Web dev, UI/UX intern', disciption: "Computer science student at Orleans university | Native mobile developer | Web developer", img : ichouIMG }
   ];
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const navRef = useRef(null);
 
@@ -70,13 +81,40 @@ function Home() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // Function to handle mouse down event
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - navRef.current.offsetLeft);
+    setScrollLeft(navRef.current.scrollLeft);
+  };
+
+  // Function to handle mouse up event
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Function to handle mouse leave event
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  // Function to handle mouse move event
+  const handleMouseMove = (e) => {
+    if (!isDragging) return; // If not dragging, exit
+    e.preventDefault();
+    const x = e.pageX - navRef.current.offsetLeft; // Calculate the current mouse position
+    const walk = (x - startX) * 2; // The multiplied factor determines the scroll speed
+    navRef.current.scrollLeft = scrollLeft - walk; // Update the scroll position
+  };
+
  
 
   return (
   
     <div className="page-container3">
 
-      <div className="Header-container">
+      <div id="home" className="Header-container">
 
         <ToastContainer />
 
@@ -103,14 +141,13 @@ function Home() {
 
                 <div className="column">
                   
-                  <button className="register-button" onClick={ ()=> {}}>
+                <button className="register-button" onClick={ ()=> { document.getElementById('features').scrollIntoView({ behavior: 'smooth' }) } }>
                       See Features
                   </button>
 
-                  <button className="signin-button" onClick={ ()=> {}}>
+                  <button className="signin-button" onClick={ ()=> { document.getElementById('team').scrollIntoView({ behavior: 'smooth' }) } }>
                       Team 
                   </button>
-
                 </div>
 
               </div>
@@ -147,11 +184,11 @@ function Home() {
 
                 <div className="column">
                   
-                  <button className="register-button" onClick={ ()=> {}}>
+                  <button className="register-button" onClick={ ()=> { document.getElementById('features').scrollIntoView({ behavior: 'smooth' }) } }>
                       See Features
                   </button>
 
-                  <button className="signin-button" onClick={ ()=> {}}>
+                  <button className="signin-button" onClick={ ()=> { document.getElementById('team').scrollIntoView({ behavior: 'smooth' }) } }>
                       Team 
                   </button>
 
@@ -164,7 +201,7 @@ function Home() {
        
       </div>
 
-      <div className="WhatWeDo-container">
+      <div id="role" className="WhatWeDo-container">
 
           <p className="SectionText">
             What we do?
@@ -246,7 +283,7 @@ function Home() {
 
       </div>
 
-      <div className="WhatWeDo2-container">
+      <div id="section1" className="WhatWeDo2-container">
 
         { windowWidth > 512 ? (
           <>
@@ -435,7 +472,7 @@ function Home() {
         
       </div>
 
-      <div className="Team-container">
+      <div id="team" className="Team-container">
 
         <p className="SectionText">
           Meet our team
@@ -463,7 +500,13 @@ function Home() {
 
         <div className="margin"/>
 
-        <div className="members" ref={navRef}>
+        <div className="members"
+             ref={navRef} 
+             onMouseDown={handleMouseDown}
+             onMouseLeave={handleMouseLeave}
+             onMouseUp={handleMouseUp}
+             onMouseMove={handleMouseMove}
+        >
 
           {
             members.map((member, index) => (
@@ -507,7 +550,7 @@ function Home() {
 
       </div>
 
-      <div className="Features-container">
+      <div id="features" className="Features-container">
 
           <p className="SectionText">
             Platforme features
@@ -591,7 +634,7 @@ function Home() {
           
       </div>
 
-      <div className="statistics-container">
+      <div id="ngi" className="statistics-container">
 
         <p className="statistics-title">
           NGI SEARCH BENEFITS FOR YOUR PROJECT
@@ -639,7 +682,7 @@ function Home() {
 
       </div>
 
-      <div className="FAQ-container">
+      <div id="faq" className="FAQ-container">
 
         <div className="content">
 
@@ -726,7 +769,7 @@ function Home() {
 
       </div>
 
-      <div className="footer-container">
+      <div id="footer" className="footer-container">
         
         <div className="footer">
 
@@ -740,7 +783,7 @@ function Home() {
 
               <div className="space5"/>
 
-              <p className="FooterText">
+              <p className="FooterText2">
                 HeReFaNMi (Health-Related Fake News Monitoring) is funded by the NGI Search european project
                 which is an European project designed to support entrepreneurs, tech-geeks, developers, and socially engaged people,  who are capable of challenging the way we search and discover information and resources on the internet.     
               </p>
@@ -749,9 +792,9 @@ function Home() {
 
               <div className="footerIconsContainer">
 
-                <img className="footerIcon" src={facebookIMG} alt="Image" />
-                <img className="footerIcon" src={linkedinIMG} alt="Image" />
-                <img className="footerIcon" src={ngiIMG} alt="Image" />
+                <a href="#footer"><img className="footerIcon" src={facebookIMG} alt="Image" /></a>
+                <a href="https://www.linkedin.com/company/herefanmi-project/" target="_blank"><img className="footerIcon" src={linkedinIMG} alt="Image" /></a>
+                <a href="https://sites.google.com/view/herefanmi/" target="_blank"><img className="footerIcon" src={ngiIMG} alt="Image" /></a>
 
               </div>
               
@@ -769,27 +812,19 @@ function Home() {
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  Home
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#home">Home</a>
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  About Us
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#footer">About Us</a>
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  Role
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#role">Role</a>
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  Features
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#features">Features</a>
               
                 <div className="space6"/>
 
@@ -803,27 +838,19 @@ function Home() {
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  Contacts
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#footer">Contacts</a>
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  NGI
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#ngi">NGI</a>
+               
+                <div className="space5"/>
+
+                <a className="FooterText" style={{textDecoration:'none'}} href="#team">Our team</a>
 
                 <div className="space5"/>
 
-                <p className="FooterText">
-                  Our team
-                </p>
-
-                <div className="space5"/>
-
-                <p className="FooterText">
-                  FAQ
-                </p>
+                <a className="FooterText" style={{textDecoration:'none'}} href="#faq">FAQ</a>
 
                 <div className="space6"/>
               
@@ -837,14 +864,14 @@ function Home() {
 
                 <div className="space5"/>
 
-                <p className="FooterText">
+                <p className="FooterText2">
                   Address: <br/>
                   3, rue Charles du Coulomb, Orleans 45100, France
                 </p>
 
                 <div className="space5"/>
 
-                <p className="FooterText">
+                <p className="FooterText2">
                   Contact: <br/>
                   +33 7 80 39 15 53
                   a.ichou@esi-sba.dz
