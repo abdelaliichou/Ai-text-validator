@@ -472,9 +472,17 @@ html {
   flex-grow: 1;
 }
 
+.cardIMG2{
+  object-fit: scale-down;
+  height: 45%;
+  width: 100%;
+  flex-grow: 1;
+}
+
 .cardDiscription{
   height: 55%;
   flex-grow: 1;
+  background: #fafdff;
   padding: 5px 8px 5px 8px;
 }
 
@@ -1541,23 +1549,23 @@ html {
   .cardDiscription{
     height: 55%;
     flex-grow: 1;
-    padding: 20px;
+    padding: 15px;
   }
 
   .card{
     border-radius: 12px;
     margin: 20px;
     box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
-    height: 430px;
-    width: 350px;
+    height: 330px;
+    width: 230px;
     background-color: white;
     overflow: hidden ;
     transition: transform 0.5s ease-in-out; /* Add smooth transition */
   }
 
   .CardTitle{
-    margin-top: 8px;
-    font-size: 1.7rem;
+    margin-top: 5px;
+    font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -1567,7 +1575,7 @@ html {
 
   .CardText{
     margin-top: 0px;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -1739,20 +1747,26 @@ html {
     margin-bottom: 10px;
   }
 
+  .cardDiscription{
+    height: 55%;
+    flex-grow: 1;
+    padding: 10px;
+  }
+
   .card{
     border-radius: 12px;
     margin: 20px;
     box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
-    height: 400px;
-    width: 330px;
+    height: 280px;
+    width: 200px;
     background-color: white;
     overflow: hidden ;
     transition: transform 0.5s ease-in-out; /* Add smooth transition */
   }
 
   .CardTitle{
-    margin-top: 8px;
-    font-size: 1.5rem;
+    margin-top: 5px;
+    font-size: 1.1rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -1762,7 +1776,7 @@ html {
 
   .CardText{
     margin-top: 0px;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -2002,15 +2016,15 @@ html {
   .cardDiscription{
     height: 55%;
     flex-grow: 1;
-    padding: 10px;
+    padding: 8px;
   }
 
   .card{
     border-radius: 12px;
     margin: 20px;
     box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
-    height: 330px;
-    width: 280px;
+    height: 255px;
+    width: 180px;
     background-color: white;
     overflow: hidden ;
     transition: transform 0.5s ease-in-out; /* Add smooth transition */
@@ -2018,7 +2032,7 @@ html {
 
   .CardTitle{
     margin-top: 8px;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -2028,7 +2042,7 @@ html {
 
   .CardText{
     margin-top: 0px;
-    font-size: 0.9rem;
+    font-size: 0.65rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -2230,15 +2244,15 @@ html {
   .cardDiscription{
     height: 55%;
     flex-grow: 1;
-    padding: 10px;
+    padding:8px;
   }
 
   .card{
     border-radius: 12px;
     margin: 20px;
     box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
-    height: 330px;
-    width: 230px;
+    height: 230px;
+    width: 170px;
     background-color: white;
     overflow: hidden ;
     transition: transform 0.5s ease-in-out; /* Add smooth transition */
@@ -2246,7 +2260,7 @@ html {
 
   .CardTitle{
     margin-top: 8px;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -2256,7 +2270,7 @@ html {
 
   .CardText{
     margin-top: 0px;
-    font-size: 0.85rem;
+    font-size: 0.6rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -2324,8 +2338,8 @@ html {
     border-radius: 12px;
     margin: 20px;
     box-shadow: 0 0px 13px rgba(0, 0, 0, 0.1);
-    height: 320px;
-    width: 220px;
+    height: 220px;
+    width: 160px;
     background-color: white;
     overflow: hidden ;
     transition: transform 0.5s ease-in-out; /* Add smooth transition */
@@ -2333,7 +2347,7 @@ html {
 
   .CardTitle{
     margin-top: 8px;
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
@@ -2343,7 +2357,7 @@ html {
 
   .CardText{
     margin-top: 0px;
-    font-size: 0.8rem;
+    font-size: 0.55rem;
     font-weight: 500;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;

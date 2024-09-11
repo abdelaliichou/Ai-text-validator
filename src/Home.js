@@ -9,9 +9,9 @@ import socialIMG from './icons/social.jpg';
 import aiIMG from './icons/ai.png';
 import leftIMG from './icons/leftArrow.svg';
 import rightIMG from './icons/rightArrow.svg';
-import FeatureIMG1 from './icons/security.jpg'
-import FeatureIMG2 from './icons/ux.jpg'
-import FeatureIMG3 from './icons/medical.jpg'
+import FeatureIMG1 from './icons/firebase.png'
+import FeatureIMG2 from './icons/ux.png'
+import FeatureIMG3 from './icons/medical.png'
 import facebookIMG from './icons/facebook.png';
 import linkedinIMG from './icons/linkedin.png';
 import ngiIMG from './icons/ngi.png';
@@ -566,7 +566,7 @@ function Home() {
 
             <div className="card">
 
-              <img className="cardIMG" src={FeatureIMG1} alt="Image" />
+              <img className="cardIMG2" src={FeatureIMG1} alt="Image" />
 
               <div className="cardDiscription">
 
@@ -601,7 +601,7 @@ function Home() {
 
             <div className="card">
 
-              <img className="cardIMG" src={FeatureIMG3} alt="Image" />
+              <img className="cardIMG2" src={FeatureIMG3} alt="Image" />
 
               <div className="cardDiscription">
 
