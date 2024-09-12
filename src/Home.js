@@ -32,8 +32,8 @@ function Home() {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const members = [
-    { name: 'Aladine Chetouani', job: 'Research investigator', disciption: "Professor Aladine Chetouani from the University of Orleans' Prisme Laboratory, France.", img : aladineIMG },
     { name: 'Alessandro Bruno', job: 'Head Coordinator', disciption: "The team is under the coordination of Alessandro Bruno, a Tenure-Track Assistant Professor at the IULM University, Milan, Italy.", img : allesandroIMG },
+    { name: 'Aladine Chetouani', job: 'Research investigator', disciption: "Professor Aladine Chetouani from the University of Orleans' Prisme Laboratory, France.", img : aladineIMG },
     { name: 'Pier-Luigie Mazzeo', job: 'Research investigator', disciption: "Research Pier-Luigie Mazzeo from CNR (Italian Research Council) ISASI (Institute of Applied Science and Intelligent Systems) in Italy", img : luigiIMG },
     { name: 'Mohamed Amine KERKOURI', job: 'AI Researcher, Web-Dev, Team Lead', disciption: "Mohamed Amine KERKOURI conducts research on human visual perception and attention modeling using deep learning approaches.", img : amineIMG },
     { name: 'Marouane Tliba', job: 'Communication, Team Lead', disciption: "Marouane Tliba conducts research about improving the representational ability of neural networks for 3D content perceptual assessment.", img : marouaneIMG },
