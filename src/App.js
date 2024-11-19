@@ -86,8 +86,8 @@ function App() {
       }
 
       console.log(datum)
-      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', datum ,{
-      const response = await axios.post('http://127.0.0.1:10000/medicalTalk', datum ,{
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/medicalTalk', datum ,{
+      // const response = await axios.post('http://127.0.0.1:10000/medicalTalk', datum ,{
         onUploadProgress: progressEvent => {
           // Handle upload progress if needed
         },
@@ -139,8 +139,8 @@ function App() {
         rating : rating,
         reference : reference
       }
-      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
-      const response = await axios.post('http://127.0.0.1:10000/save', datum );
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/save', datum );
+      // const response = await axios.post('http://127.0.0.1:10000/save', datum );
       console.log(response.data);
 
       // showing alert message if setting the rating was good 
@@ -401,8 +401,8 @@ function App() {
       const datum = {
         user : user?.uid,
       }
-      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/pointcheck', datum );
-      const response = await axios.post('http://127.0.0.1:10000/pointcheck', datum );
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/pointcheck', datum );
+      // const response = await axios.post('http://127.0.0.1:10000/pointcheck', datum );
       const points = response.data.points;
       console.log("USER POINTS ARE : ", points);
 
@@ -438,8 +438,8 @@ function App() {
         points : point,
         user : user?.uid,
       }
-      // const response = await axios.post('https://ai-text-validator-backend.onrender.com/pointsave', datum );
-      const response = await axios.post('http://127.0.0.1:10000/pointsave', datum );
+      const response = await axios.post('https://ai-text-validator-backend.onrender.com/pointsave', datum );
+      // const response = await axios.post('http://127.0.0.1:10000/pointsave', datum );
       console.log(response.data)
 
     } catch (error) {

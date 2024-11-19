@@ -19,20 +19,17 @@ This application allows users to check the trustworthiness of health-related inf
 
 Clone this repository to your local machine and navigate into the project directory:
 
-```bash
 git clone https://github.com/abdelaliichou/Ai-text-validator.git
 cd ai-text-validator
 
 
 ### **2. Build and Run the Docker Container**
 
-```bash
 docker build -t frontend .
 docker run -p 3000:3000 frontend
 
 ### **3. Access the Application**
 
-```bash
 Once the container is running, access the web application:
 Local Access in the browser: http://127.0.0.1:3000
 
