@@ -16,6 +16,7 @@ import facebookIMG from './icons/facebook.png';
 import linkedinIMG from './icons/linkedin.png';
 import ngiIMG from './icons/ngi.png';
 import ichouIMG from './icons/ichou.jpeg';
+import habibIMG from './icons/habib.png';
 import oualidIMG from './icons/oualid.jpeg';
 import hamdiIMG from './icons/hamdi.jpeg';
 import marouaneIMG from './icons/merouane.jpeg';
@@ -37,9 +38,11 @@ function Home() {
     { name: 'Pier-Luigie Mazzeo', job: 'Research investigator', disciption: "Research Pier-Luigie Mazzeo from CNR (Italian Research Council) ISASI (Institute of Applied Science and Intelligent Systems) in Italy", img : luigiIMG },
     { name: 'Mohamed Amine KERKOURI', job: 'AI Researcher, Web-Dev, Team Lead', disciption: "Mohamed Amine KERKOURI conducts research on human visual perception and attention modeling using deep learning approaches.", img : amineIMG },
     { name: 'Marouane Tliba', job: 'Communication, Team Lead', disciption: "Marouane Tliba conducts research about improving the representational ability of neural networks for 3D content perceptual assessment.", img : marouaneIMG },
+    { name: 'Habib TAHAR DJEBBAR', job: 'Senior DevOps enginner', disciption: "DevOps Engineer at Monoprix, where I enhance web application dev, deployment, and maintenance within a dynamic tech ecosystem", img : habibIMG },
+    { name: 'Idriss Saadallah', job: 'Technical Leader', disciption: "Ensuring innovation and the highest quality deliverables while overseeing the design, development, and deployment of cutting-edge solutions.", img : aiIMG },
     { name: 'Abderrahmene Hamdi', job: 'AI/LLMs Intern', disciption: "CS student (ESI) | Machine Learning | Deep learning", img : hamdiIMG },
     { name: 'Walid Taib', job: 'AI, Data pipline Intern', disciption: "Research intern, Junior Data Scientist, and Final Student at the Higher National School of Telecommunication and ICT", img : oualidIMG },
-    { name: 'Abdelali ichou', job: 'Web dev, UI/UX intern', disciption: "Computer science student at Orleans university | Native mobile developer | Web developer", img : ichouIMG }
+    { name: 'Abdelali ichou', job: 'Web dev, UI/UX intern', disciption: "Computer science student at Clermont Auvergne university | Native mobile developer | Web developer", img : ichouIMG }
   ];
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);

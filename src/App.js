@@ -429,7 +429,7 @@ function App() {
    
     } catch (error) {
       console.error(error);
-    }
+    } 
   }
 
   const saveUserPoints = async (point) => {
