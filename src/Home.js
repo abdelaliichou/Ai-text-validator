@@ -16,7 +16,7 @@ import facebookIMG from './icons/facebook.png';
 import linkedinIMG from './icons/linkedin.png';
 import ngiIMG from './icons/ngi.png';
 import ichouIMG from './icons/ichou.jpeg';
-import habibIMG from './icons/habib.png';
+import habibIMG from './icons/habib.jpeg';
 import oualidIMG from './icons/oualid.jpeg';
 import hamdiIMG from './icons/hamdi.jpeg';
 import marouaneIMG from './icons/merouane.jpeg';
